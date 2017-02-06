@@ -63,7 +63,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Nd5-B7-lrm"/>
+                    <navigationItem key="navigationItem" id="Nd5-B7-lrm">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="P5C-qW-mni">
+                            <connections>
+                                <action selector="onLogoutButton:" destination="o3e-hS-UdP" id="qsb-ee-0q5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Dc-Q8-XWd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
