@@ -1,19 +1,19 @@
 # TwitterClone
 
-# Project 4 - *Name of App Here*
+# Project 4 - TwitterClone
 
-**Name of your app** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
+TwitterClone is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **X** hours spent in total
+Time spent: 19 hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
-- [ ] User can sign in using OAuth login flow
-- [ ] User can view last 20 tweets from their home timeline
-- [ ] The current signed in user will be persisted across restarts
-- [ ] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
+- [X] User can sign in using OAuth login flow
+- [X] User can view last 20 tweets from their home timeline
+- [X] The current signed in user will be persisted across restarts
+- [X] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
 - [ ] Retweeting and favoriting should increment the retweet and favorite count.
 
 The following **optional** features are implemented:
@@ -28,8 +28,8 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. 
-2. 
+1. Focus on the retweeting and favoriting. That was really hard
+2. UX is also very important. Could not make my app look good.
 
 ## Video Walkthrough 
 
@@ -43,9 +43,11 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
+I had a lot of trouble with retweeting and favoriting apps. The videos were also out of date with Swift 3.
+
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2017] [Poojan Dave]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
