@@ -11,6 +11,7 @@ import UIKit
 class TweetCell: UITableViewCell {
     
     @IBOutlet weak var tweetCell: UIView!
+    
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var nameButton: UIButton!
     @IBOutlet weak var screennameButton: UIButton!
@@ -24,10 +25,18 @@ class TweetCell: UITableViewCell {
         
         didSet {
             
-            tweetLabel.text = tweet.text 
-//            timestampButton.setTitle(tweet.timestamp as! String, for: .normal)
-            screennameButton.setTitle("@\(tweet.user?.screenname)", for: .normal)
             nameButton.setTitle(tweet.user?.name as String?, for: .normal)
+            
+            screennameButton.setTitle("@\(tweet.user?.screenname as String?)", for: .normal)
+            
+            tweetLabel.text = tweet.text
+            
+            if let profileURL = tweet.user?.profileUrl{
+                pictureImageView.setImageWith(profileURL as URL)
+            }
+            
+//            timestampButton.setTitle(tweet.timestamp as! String, for: .normal)
+
 //            likeButton.setTitle("\(tweet.favoritesCount)", for: .normal)
 
             
