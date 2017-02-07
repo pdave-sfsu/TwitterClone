@@ -20,6 +20,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
+    
+    let dateformatter = DateFormatter()
 
     var tweet: Tweet! {
         
@@ -27,7 +29,7 @@ class TweetCell: UITableViewCell {
             
             nameButton.setTitle(tweet.user?.name as String?, for: .normal)
             
-            screennameButton.setTitle("@\(tweet.user?.screenname as String?)", for: .normal)
+            screennameButton.setTitle("@" + (tweet.user!.screenname as String!)!, for: .normal)
             
             tweetLabel.text = tweet.text
             
@@ -35,9 +37,11 @@ class TweetCell: UITableViewCell {
                 pictureImageView.setImageWith(profileURL as URL)
             }
             
-//            timestampButton.setTitle(tweet.timestamp as! String, for: .normal)
+            dateformatter.dateFormat = "MMM d, h:mm a"
+            
+            timestampButton.setTitle(dateformatter.string(from: tweet.timestamp!), for: .normal)
 
-//            likeButton.setTitle("\(tweet.favoritesCount)", for: .normal)
+            likeButton.setTitle("\(tweet.favoritesCount)", for: .normal)
 
             
         }
