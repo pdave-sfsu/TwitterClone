@@ -67,7 +67,7 @@ I had a lot of trouble with retweeting and favoriting apps. The videos were also
     
     
     
-    # Project 5 - *Name of App Here*
+# Project 5 - TwitterClone
 
 Time spent: **X** hours spent in total
 

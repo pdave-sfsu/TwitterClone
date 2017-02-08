@@ -18,7 +18,8 @@ class User: NSObject {
     var dictionary: NSDictionary?
     
     
-    init(dictionary: NSDictionary){
+    //De-serializing dictionary
+    init(dictionary: NSDictionary) {
         
         self.dictionary = dictionary
         
@@ -61,7 +62,7 @@ class User: NSObject {
             
             if let user = user {
                 let data = try! JSONSerialization.data(withJSONObject: user.dictionary!, options: [])
-                print("hello")
+
                 userDefault.set(data, forKey: "currentUserData")
             } else {
                 userDefault.set(nil, forKey: "currentUserData")

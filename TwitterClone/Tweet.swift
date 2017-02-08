@@ -18,14 +18,13 @@ class Tweet: NSObject {
     
     
     init(dictionary: NSDictionary) {
+        
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         
         text = dictionary["text"] as? String
         
         retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
         favoritesCount = (dictionary["favorite_count"] as? Int) ?? 0
-       
-
         
         let timestampString = dictionary["created_at"] as? String
         
@@ -38,18 +37,19 @@ class Tweet: NSObject {
     }
     
     class func tweetsWithArray(dictionaries: [NSDictionary]) -> [Tweet] {
-    
+        
         var tweets = [Tweet]()
-    
+        
         for dictionary in dictionaries {
             let tweet = Tweet(dictionary: dictionary)
             
+            //Add to array tweets
             tweets.append(tweet)
         }
-    
+        
         return tweets
     }
-
+    
     
 }
 
