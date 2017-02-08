@@ -52,7 +52,7 @@ class Tweet: NSObject {
         }
     }
     
-    //Adds individual tweets to array
+    //Adds individual tweets to array and sends them back
     class func tweetsWithArray(dictionaries: [NSDictionary]) -> [Tweet] {
         
         //Created an array of Tweet

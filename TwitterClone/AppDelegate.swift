@@ -7,25 +7,34 @@
 //
 
 import UIKit
+//import BDBOAuth1Manager
 import BDBOAuth1Manager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    //window declaration
     var window: UIWindow?
 
+    //didFinishLaunchingWithOptions: first method called when application is run
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        //if current user exists
         if User.currentUser != nil {
             print("There is a current user.")
             
+            //reference the storyboard
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            //Get the TweetsNavigationController using storyboard ID
             let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
             
+            //rootViewController determines the starting viewController
             window?.rootViewController = vc
         }
         
+        //
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil, queue: OperationQueue.main) { (Notification) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateInitialViewController()
@@ -58,13 +67,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    //openURL: is a method called when the app is opened using a url
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
     
+        //using the sharedInstance, we can call the handleOpenURL method
         TwitterClient.sharedInstance?.handleOpenUrl(url: url as NSURL)
         
         return true
     }
-
-
 }
-
