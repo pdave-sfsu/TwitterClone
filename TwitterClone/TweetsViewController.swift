@@ -10,60 +10,69 @@ import UIKit
 
 class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    //property that stores all the tweets
     var tweets: [Tweet]!
     
+    //tableview outlet
     @IBOutlet weak var tableView: UITableView!
     
+    //viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Setting up tableview
         tableView.dataSource = self
         tableView.delegate = self
         
+        //Used staredInstance to access homeTimeline method
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
+            
+            //Stored the tweets within the class property
             self.tweets = tweets
+            
+            //Print the text from all the tweets
             for tweet in tweets {
-                print(tweet.text)
+                print(tweet.text!)
                 
-                
-                
+                //reloads data to have in tableview
                 self.tableView.reloadData()
             }
+            //Error
         }, failure: { (error: NSError) in
             print(error.localizedDescription)
         })
 
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    //onLogoutButton: when the logout button is pushed
     @IBAction func onLogoutButton(_ sender: Any) {
         
+        //uses the sharedInstance to call logout()
         TwitterClient.sharedInstance?.logout()
         
     }
     
+    //numberOfRowsInSection: lists the number of cells
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-       return self.tweets?.count ?? 0
-        
+        //the number of tweets
+        return self.tweets?.count ?? 0
     }
     
-    @available(iOS 2.0, *)
+    //cellForRowAt: the data to be stored within the cell
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        //created a cell
+        //used the "TweetCell" identifier in prototype cell and cast it as a TweetCell
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
+        //Got specific tweet that is necessary to put in
         let tweet = tweets?[indexPath.row]
         
+        //Put tweet within the cell
         cell.tweet = tweet
         
         return cell
-        
     }
 
     /*
@@ -76,4 +85,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     */
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 }

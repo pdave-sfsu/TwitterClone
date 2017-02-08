@@ -7,43 +7,46 @@
 //
 
 import UIKit
+//import BDBOAuth1Manager
 import BDBOAuth1Manager
 
 class LoginViewController: UIViewController {
-
+    
+    //viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
+    //onLoginButton action: when the login button is pushed
     @IBAction func onLoginButton(_ sender: Any) {
         
-        TwitterClient.sharedInstance?.login(success: { 
-            print("I've logged in!")
+        //Uses shared instance to login from TwitterClient
+        TwitterClient.sharedInstance?.login(success: {
             
+            print("onLoginButton: I've logged in!")
             
-            //Used the segue identifier
+            //Used the segue identifier to perform segue to Navigationbar
+            //Goes to the TweetsViewController/HomeTimeline
             self.performSegue(withIdentifier: "loginSegue", sender: nil)
         }) { (error: NSError) in
             print("Error: \(error.localizedDescription)")
         }
-
+        
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
     }
-    */
-
 }
