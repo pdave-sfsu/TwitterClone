@@ -9,7 +9,7 @@
 import UIKit
 
 class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     //property that stores all the tweets
     var tweets: [Tweet]!
     
@@ -30,20 +30,15 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             //Stored the tweets within the class property
             self.tweets = tweets
             
-            //Print the text from all the tweets
-            for tweet in tweets {
-                print(tweet.text!)
-                
-                //reloads data to have in tableview
-                self.tableView.reloadData()
-            }
+            //reloads data to have in tableview
+            self.tableView.reloadData()
+            
             //Error
         }, failure: { (error: NSError) in
             print(error.localizedDescription)
         })
-
     }
-
+    
     //onLogoutButton: when the logout button is pushed
     @IBAction func onLogoutButton(_ sender: Any) {
         
@@ -74,17 +69,17 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         return cell
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
