@@ -100,6 +100,9 @@
                                                     <state key="normal" title="Reply" image="reply-icon">
                                                         <color key="titleColor" red="0.48722878886010368" green="0.48722878886010368" blue="0.48722878886010368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="replyButtonPressed:" destination="38y-bl-c80" eventType="touchUpInside" id="9Q4-Vt-Oz8"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYR-kk-e9L">
                                                     <rect key="frame" x="269" y="91" width="63" height="30"/>
@@ -107,6 +110,9 @@
                                                     <state key="normal" title="Like" image="favor-icon">
                                                         <color key="titleColor" red="0.48722878886010368" green="0.48722878886010368" blue="0.48722878886010368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="favoriteButtonPressed:" destination="38y-bl-c80" eventType="touchUpInside" id="Jk2-1K-DcE"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbB-Or-weB">
                                                     <rect key="frame" x="206" y="8" width="104" height="30"/>
@@ -121,6 +127,9 @@
                                                     <state key="normal" title="Retweet" image="retweet-icon">
                                                         <color key="titleColor" red="0.48722878886010368" green="0.48722878886010368" blue="0.48722878886010368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="retweetButtonPressed:" destination="38y-bl-c80" eventType="touchUpInside" id="bcg-Fn-WuM"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>

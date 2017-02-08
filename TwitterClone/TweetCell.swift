@@ -55,6 +55,18 @@ class TweetCell: UITableViewCell {
 
         }
     }
+    
+    @IBAction func replyButtonPressed(_ sender: Any) {
+        print("replying")
+    }
+    
+    @IBAction func retweetButtonPressed(_ sender: Any) {
+        print("retweeting")
+    }
+    
+    @IBAction func favoriteButtonPressed(_ sender: Any) {
+        print("favoriting")
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
