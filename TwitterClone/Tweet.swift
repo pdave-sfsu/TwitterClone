@@ -18,6 +18,13 @@ class Tweet: NSObject {
     var retweetCount: Int = 0
     var favoritesCount: Int = 0
     
+    //Creating the isFavorite and is Retweeted property
+    var isFavorited: Bool = false
+    var isRetweeted: Bool = false
+    
+    //Holds the id for the tweet
+    var idStr: String
+    
     //Saving the user that created the tweet
     var user: User?
     
@@ -50,6 +57,13 @@ class Tweet: NSObject {
             //format the timestampString using the dateFormatter()
             timestamp = formatter.date(from: timestampString)
         }
+        
+        //Figures out if favorited or retweeted by currentuser
+        isFavorited = (dictionary["favorited"] as? Bool)!
+        isRetweeted = (dictionary["retweeted"] as? Bool)!
+        
+        idStr = (dictionary["id_str"] as? String)!
+        print(idStr)
     }
     
     //Adds individual tweets to array and sends them back
@@ -69,5 +83,12 @@ class Tweet: NSObject {
         }
         
         return tweets
+    }
+    
+    class func tweetAsDictionary (_ dict: NSDictionary) -> Tweet {
+        
+        let tweet = Tweet(dictionary: dict)
+        
+        return tweet
     }
 }

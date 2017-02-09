@@ -24,6 +24,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     
     let dateformatter = DateFormatter()
+    
+    var tweetID: String?
 
     //individual tweet cell
     var tweet: Tweet! {
@@ -50,14 +52,28 @@ class TweetCell: UITableViewCell {
             //Set the date
             timestampButton.setTitle(dateformatter.string(from: tweet.timestamp!), for: .normal)
 
+            //Figures out the appropriate image 
+            //Depending upon if the current user favorited or retweeted a page
+            let favoriteButtonImage = tweet.isFavorited ? "favor-icon-red" : "favor-icon"
+            let retweetButtonImage = tweet.isRetweeted ? "retweet-icon-green" : "retweet-icon"
+            
+            likeButton.setImage(UIImage(named: favoriteButtonImage), for: UIControlState.normal)
+            retweetButton.setImage(UIImage(named: retweetButtonImage), for: UIControlState.normal)
+            
             //Set the favorite count
             likeButton.setTitle("\(tweet.favoritesCount)", for: .normal)
+            retweetButton.setTitle("\(tweet.retweetCount)", for: .normal)
+            
+            tweetID = tweet.idStr
 
         }
     }
     
     @IBAction func replyButtonPressed(_ sender: Any) {
         print("replying")
+        
+        
+        
     }
     
     @IBAction func retweetButtonPressed(_ sender: Any) {
@@ -66,6 +82,12 @@ class TweetCell: UITableViewCell {
     
     @IBAction func favoriteButtonPressed(_ sender: Any) {
         print("favoriting")
+        
+        TwitterClient.sharedInstance?.createFavorite(params: ["id": tweetID], success: { (retweet) in
+            print("Barabara is awesoem!")
+        }, failure: { (error: Error) in
+            print("Error" + error.localizedDescription)
+        })
     }
 
     override func awakeFromNib() {

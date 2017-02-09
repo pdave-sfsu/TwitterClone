@@ -127,9 +127,25 @@ class TwitterClient: BDBOAuth1SessionManager {
             //
             success(user)
             
+            print("screenname \(user.screenname)")
+            
             //Error
         }, failure: { (task: URLSessionDataTask?, error: Error) in
             failure(error as NSError)
         })
     }
+    
+    func createFavorite (params: NSDictionary?, success: @escaping (_ tweet: Tweet?) -> (), failure: @escaping (Error) -> ()){
+        
+        post("1.1/favorites/create.json", parameters: params, progress: nil, success: { (task: URLSessionDataTask, response: Any) -> Void in
+            
+            let tweet = Tweet.tweetAsDictionary(response as! NSDictionary)
+            
+            success(tweet)
+            
+        }, failure: { (task: URLSessionDataTask?, error: Error) -> Void in
+            failure(error)
+        })
+    }
+    
 }
