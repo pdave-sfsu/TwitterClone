@@ -31,7 +31,8 @@ class TwitterClient: BDBOAuth1SessionManager {
         
         //fetchRequestToken: recieves the request token
         TwitterClient.sharedInstance?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "mytwitterdemo://oaut"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
-            print("I got a token: \(requestToken!.token!)")
+            
+            print("TwitterClient/login(): I got a token: \(requestToken!.token!)")
             
             //Creates the URL
             let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken!.token!)")!
@@ -41,7 +42,8 @@ class TwitterClient: BDBOAuth1SessionManager {
             
             //Error
         }, failure: { (error: Error?) -> Void in
-            print(" error: \(error?.localizedDescription)")
+            
+            print("TwitterClient/login(): error: \(error?.localizedDescription)")
             self.loginFailure?(error as! NSError)
         })
     }
@@ -67,7 +69,8 @@ class TwitterClient: BDBOAuth1SessionManager {
         
         //fetchAccessToken: fetches the access token
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) in
-            print("I got the access token: \(accessToken!.token)!")
+            
+            print("TwitterClient/handleOpenUrl(): I got the access token: \(accessToken!.token)!")
             
             //Retrieves the current account
             self.currentAccount(success: { (user: User) in
@@ -86,7 +89,8 @@ class TwitterClient: BDBOAuth1SessionManager {
             
             //Error
         }, failure: { (error: Error?) in
-            print("error: \(error?.localizedDescription)")
+            
+            print("TwitterClient/handleOpenUrl(): error: \(error?.localizedDescription)")
             self.loginFailure?(error as! NSError)
         })
     }
@@ -127,7 +131,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             //
             success(user)
             
-            print("screenname \(user.screenname)")
+            print("TwitterClient/currentAccount():screenname \(user.screenname)")
             
             //Error
         }, failure: { (task: URLSessionDataTask?, error: Error) in
@@ -135,12 +139,16 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    //createFavorite method lets the user favorite a tweet
     func createFavorite (params: NSDictionary?, success: @escaping (_ tweet: Tweet?) -> (), failure: @escaping (Error) -> ()){
         
+        //sends the request to favorite the tweet
         post("1.1/favorites/create.json", parameters: params, progress: nil, success: { (task: URLSessionDataTask, response: Any) -> Void in
             
+            //returns a new tweet
             let tweet = Tweet.tweetAsDictionary(response as! NSDictionary)
             
+            //
             success(tweet)
             
         }, failure: { (task: URLSessionDataTask?, error: Error) -> Void in

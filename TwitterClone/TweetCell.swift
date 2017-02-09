@@ -23,8 +23,10 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
     
+    //dateFormatter
     let dateformatter = DateFormatter()
     
+    //TweetID used to store ID of tweet being changed
     var tweetID: String?
 
     //individual tweet cell
@@ -34,10 +36,8 @@ class TweetCell: UITableViewCell {
             
             //Changed the name
             nameButton.setTitle(tweet.user?.name as String?, for: .normal)
-            
             //Changd the screenname
             screennameButton.setTitle("@" + (tweet.user!.screenname as String!)!, for: .normal)
-            
             //Changed the tweet text
             tweetLabel.text = tweet.text
             
@@ -48,7 +48,6 @@ class TweetCell: UITableViewCell {
             
             //Set the dateformat
             dateformatter.dateFormat = "MMM d, h:mm a"
-            
             //Set the date
             timestampButton.setTitle(dateformatter.string(from: tweet.timestamp!), for: .normal)
 
@@ -56,7 +55,7 @@ class TweetCell: UITableViewCell {
             //Depending upon if the current user favorited or retweeted a page
             let favoriteButtonImage = tweet.isFavorited ? "favor-icon-red" : "favor-icon"
             let retweetButtonImage = tweet.isRetweeted ? "retweet-icon-green" : "retweet-icon"
-            
+            //Set appropriate image where necessary
             likeButton.setImage(UIImage(named: favoriteButtonImage), for: UIControlState.normal)
             retweetButton.setImage(UIImage(named: retweetButtonImage), for: UIControlState.normal)
             
@@ -64,30 +63,54 @@ class TweetCell: UITableViewCell {
             likeButton.setTitle("\(tweet.favoritesCount)", for: .normal)
             retweetButton.setTitle("\(tweet.retweetCount)", for: .normal)
             
+            //Set TweetID
             tweetID = tweet.idStr
 
         }
     }
     
+    //Action for when reply button is pressed
     @IBAction func replyButtonPressed(_ sender: Any) {
-        print("replying")
-        
-        
+        print("TweetCell: replying")
         
     }
     
+    //Action for when retweet button is pressed
     @IBAction func retweetButtonPressed(_ sender: Any) {
-        print("retweeting")
+        print("TweetCell: retweeting")
+        
     }
     
+    //Action for when favorite button is pressed
     @IBAction func favoriteButtonPressed(_ sender: Any) {
-        print("favoriting")
         
-        TwitterClient.sharedInstance?.createFavorite(params: ["id": tweetID], success: { (retweet) in
-            print("Barabara is awesoem!")
-        }, failure: { (error: Error) in
-            print("Error" + error.localizedDescription)
-        })
+        //Favoriting
+        if !(tweet.isFavorited) {
+            
+            //Accessing the createFavorite method through the sharedInstance
+            //Passing in the tweetID
+            TwitterClient.sharedInstance?.createFavorite(params: ["id": tweetID!], success: { (retweet) in
+                
+                print("TweetCell: Favorited!")
+                
+                //Changes the status of isFavorited to true
+                self.tweet.isFavorited = true
+                
+                //Image turns red when it is favorited
+                self.likeButton.setImage(UIImage(named: "favor-icon-red"), for: UIControlState.normal)
+                
+                //Error
+            }, failure: { (error: Error) in
+                print("TweetCell: Error" + error.localizedDescription)
+            })
+            
+            //Unfavoriting!
+        } else {
+            
+            print ("NOICE!")
+            
+        }
+
     }
 
     override func awakeFromNib() {

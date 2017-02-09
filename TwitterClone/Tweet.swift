@@ -62,10 +62,11 @@ class Tweet: NSObject {
         isFavorited = (dictionary["favorited"] as? Bool)!
         isRetweeted = (dictionary["retweeted"] as? Bool)!
         
+        //Retrieves the id for the tweet
         idStr = (dictionary["id_str"] as? String)!
-        print(idStr)
     }
     
+    //Input: dictionaries of tweets
     //Adds individual tweets to array and sends them back
     class func tweetsWithArray(dictionaries: [NSDictionary]) -> [Tweet] {
         
@@ -85,8 +86,10 @@ class Tweet: NSObject {
         return tweets
     }
     
+    //Input: 1 tweet as a dictionary
     class func tweetAsDictionary (_ dict: NSDictionary) -> Tweet {
         
+        //tweet is parsed and initialized
         let tweet = Tweet(dictionary: dict)
         
         return tweet
