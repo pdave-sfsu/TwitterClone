@@ -25,9 +25,6 @@ class TweetCell: UITableViewCell {
     
     //dateFormatter
     let dateformatter = DateFormatter()
-    
-    //TweetID used to store ID of tweet being changed
-    var tweetID: String?
 
     //individual tweet cell
     var tweet: Tweet! {
@@ -62,9 +59,6 @@ class TweetCell: UITableViewCell {
             //Set the favorite count
             likeButton.setTitle("\(tweet.favoritesCount)", for: .normal)
             retweetButton.setTitle("\(tweet.retweetCount)", for: .normal)
-            
-            //Set TweetID
-            tweetID = tweet.idStr
 
         }
     }
@@ -89,7 +83,7 @@ class TweetCell: UITableViewCell {
             
             //Accessing the createFavorite method through the sharedInstance
             //Passing in the tweetID
-            TwitterClient.sharedInstance?.createFavorite(params: ["id": tweetID!], success: { (retweet) in
+            TwitterClient.sharedInstance?.createFavorite(params: ["id": self.tweet.idStr], success: { (retweet) in
                 
                 print("TweetCell: Favorited!")
                 
@@ -98,6 +92,12 @@ class TweetCell: UITableViewCell {
                 
                 //Image turns red when it is favorited
                 self.likeButton.setImage(UIImage(named: "favor-icon-red"), for: UIControlState.normal)
+                //Favorite count turns red
+                self.likeButton.setTitleColor(UIColor.red, for: UIControlState.normal)
+                
+                //Increase the favorite count by 1
+                self.tweet.favoritesCount += 1
+                self.likeButton.setTitle("\(self.tweet.favoritesCount)", for: .normal)
                 
                 //Error
             }, failure: { (error: Error) in
@@ -107,7 +107,26 @@ class TweetCell: UITableViewCell {
             //Unfavoriting!
         } else {
             
-            print ("NOICE!")
+            TwitterClient.sharedInstance?.destoryFavorite(params: ["id": self.tweet.idStr], success: { (retweet) in
+                
+                print("TweetCell: UnFavorited!")
+                
+                //Changes the status of isFavorited to false
+                self.tweet.isFavorited = false
+                
+                //Image turns normal when it is favorited
+                self.likeButton.setImage(UIImage(named: "favor-icon"), for: UIControlState.normal)
+                //Favorite count turns normal
+                self.likeButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
+                
+                //Decrease the favorite count by 1
+                self.tweet.favoritesCount -= 1
+                self.likeButton.setTitle("\(self.tweet.favoritesCount)", for: .normal)
+                
+                //Error
+            }, failure: { (error: Error) in
+                print("TweetCell: Error")
+            })
             
         }
 

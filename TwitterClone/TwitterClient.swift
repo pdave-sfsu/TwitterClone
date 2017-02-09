@@ -151,6 +151,25 @@ class TwitterClient: BDBOAuth1SessionManager {
             //
             success(tweet)
             
+            //Error
+        }, failure: { (task: URLSessionDataTask?, error: Error) -> Void in
+            failure(error)
+        })
+    }
+    
+    //destoryFavorite method lets the user unfavorite a tweet
+    func destoryFavorite(params: NSDictionary?, success: @escaping (_ tweet: Tweet?) -> (), failure: @escaping (Error) -> ()) {
+        
+        //sends the request to unfavorite the tweet
+        post("1.1/favorites/destroy.json", parameters: params, progress: nil, success: { (task:  URLSessionDataTask, response: Any) -> Void in
+            
+            //returns a new tweet
+            let tweet = Tweet.tweetAsDictionary(response as! NSDictionary)
+            
+            //
+            success(tweet)
+            
+            //Error
         }, failure: { (task: URLSessionDataTask?, error: Error) -> Void in
             failure(error)
         })
