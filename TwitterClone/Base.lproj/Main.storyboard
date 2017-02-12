@@ -81,7 +81,7 @@
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yA-Bf-WSz">
-                                                    <rect key="frame" x="318" y="8" width="34" height="30"/>
+                                                    <rect key="frame" x="292" y="8" width="60" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Time">
                                                         <color key="titleColor" red="0.48722878886010368" green="0.48722878886010368" blue="0.48722878886010368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

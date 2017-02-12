@@ -29,11 +29,12 @@ class TweetCell: UITableViewCell {
     //individual tweet cell
     var tweet: Tweet! {
         
+        //use didSet to change the content of the cell
         didSet {
             
             //Changed the name
             nameButton.setTitle(tweet.user?.name as String?, for: .normal)
-            //Changd the screenname
+            //Changd the screenname and properly formatted it
             screennameButton.setTitle("@" + (tweet.user!.screenname as String!)!, for: .normal)
             //Changed the tweet text
             tweetLabel.text = tweet.text
@@ -43,8 +44,8 @@ class TweetCell: UITableViewCell {
                 pictureImageView.setImageWith(profileURL as URL)
             }
             
-            //Set the dateformat
-            dateformatter.dateFormat = "MMM d, h:mm a"
+            //Set the dateformat to hour:minute AM/PM format
+            dateformatter.dateFormat = "h:mm a"
             //Set the date
             timestampButton.setTitle(dateformatter.string(from: tweet.timestamp!), for: .normal)
 
@@ -56,7 +57,7 @@ class TweetCell: UITableViewCell {
             likeButton.setImage(UIImage(named: favoriteButtonImage), for: UIControlState.normal)
             retweetButton.setImage(UIImage(named: retweetButtonImage), for: UIControlState.normal)
             
-            //Set the favorite count
+            //Set the favorite and retweet count
             likeButton.setTitle("\(tweet.favoritesCount)", for: .normal)
             retweetButton.setTitle("\(tweet.retweetCount)", for: .normal)
 
@@ -71,24 +72,52 @@ class TweetCell: UITableViewCell {
     
     //Action for when retweet button is pressed
     @IBAction func retweetButtonPressed(_ sender: Any) {
+        
         print("TweetCell: retweeting")
         
+        //If: the tweet has not been retweeted, then retweet
+        //Else: the tweet has been retweeted, then unretweet
         if !(tweet.isRetweeted){
+            
+            //Using the sharedInstance to send the id of the tweet to retweet
             TwitterClient.sharedInstance?.createRetweet(id: tweet.idStr, success: {
                 
                 print("TweetCell: Retweet")
                 
+                //Changing the value of the isRetweeted to true
                 self.tweet.isRetweeted = true
                 
-            }, failure: { (erro: Error) in
-                print(erro)
+                //Image turns green when it is retweeted
+                self.retweetButton.setImage(UIImage(named: "retweet-icon-green"), for: UIControlState.normal)
+                //Retweet count turns green
+                self.retweetButton.setTitleColor(UIColor.green, for: UIControlState.normal)
+                
+                //Increase the retweet count by 1
+                self.tweet.retweetCount += 1
+                self.retweetButton.setTitle("\(self.tweet.retweetCount)", for: .normal)
+                
+            }, failure: { (error: Error) in
+                print(error)
             })
 
         } else {
             
+            //Using the sharedInstance to send the id of the tweet to unretweet
             TwitterClient.sharedInstance?.destroyRetweet(id: tweet.idStr, success: { 
                 
                 print("TweetCell: Unretweet")
+                
+                //Changes the status of isRetweeted to false
+                self.tweet.isRetweeted = false
+                
+                //Image turns normal when it is unretweeted
+                self.retweetButton.setImage(UIImage(named: "retweet-icon"), for: UIControlState.normal)
+                //Retweet count turns normal
+                self.retweetButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
+                
+                //Decrease the retweet count by 1
+                self.tweet.retweetCount -= 1
+                self.retweetButton.setTitle("\(self.tweet.retweetCount)", for: .normal)
                 
             }, failure: { (error: Error) in
                 print(error)
@@ -138,7 +167,7 @@ class TweetCell: UITableViewCell {
                 //Changes the status of isFavorited to false
                 self.tweet.isFavorited = false
                 
-                //Image turns normal when it is favorited
+                //Image turns normal when it is unfavorited
                 self.likeButton.setImage(UIImage(named: "favor-icon"), for: UIControlState.normal)
                 //Favorite count turns normal
                 self.likeButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)

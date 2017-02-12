@@ -175,15 +175,11 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    //createRetweet lets the user retweet
     func createRetweet (id: String, success: @escaping () -> (), failure: @escaping (Error) -> ()){
         
-        //sends the request to favorite the tweet
+        //sends the request to favorite the tweet and passes in the "id"
         post("1.1/statuses/retweet/\(id).json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask!, response: Any) -> Void in
-            
-            print("TwitterClient: SuccessfulRetweet")
-            
-            //returns a new tweet
-//            let tweet = Tweet.tweetAsDictionary(response as! NSDictionary)
             
             //
             success()
@@ -195,19 +191,19 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    
+    //destroyRetweet lets the user unretweet
     func destroyRetweet(id: String, success: @escaping () -> (), failure: @escaping (Error) -> () ){
+        
+        //send the request to unretweet and passed in the "id"
         post("1.1/statuses/unretweet/\(id).json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask!, response: Any?) -> Void in
             
-            print("TwitterClient: SuccessfulRetweet")
-            
+            //
             success()
             
         }, failure: { (operation: URLSessionDataTask?, error: Error?) -> Void in
             print("Couldn't unretweet")
             failure(error!)
-        }
-        )
+        })
     }
     
 }
