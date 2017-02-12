@@ -24,6 +24,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         tableView.delegate = self
         
+        //Tells the table to follow the auto-layout constraint rules
+        tableView.rowHeight = UITableViewAutomaticDimension
+        //Estimated for the scrollHeight Dimension
+        tableView.estimatedRowHeight = 300
+        
         //Used staredInstance to access homeTimeline method
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             
