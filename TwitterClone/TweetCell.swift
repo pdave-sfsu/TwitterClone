@@ -73,6 +73,30 @@ class TweetCell: UITableViewCell {
     @IBAction func retweetButtonPressed(_ sender: Any) {
         print("TweetCell: retweeting")
         
+        if !(tweet.isRetweeted){
+            TwitterClient.sharedInstance?.createRetweet(id: tweet.idStr, success: {
+                
+                print("TweetCell: Retweet")
+                
+                self.tweet.isRetweeted = true
+                
+            }, failure: { (erro: Error) in
+                print(erro)
+            })
+
+        } else {
+            
+            TwitterClient.sharedInstance?.destroyRetweet(id: tweet.idStr, success: { 
+                
+                print("TweetCell: Unretweet")
+                
+            }, failure: { (error: Error) in
+                print(error)
+            })
+            
+        }
+        
+        
     }
     
     //Action for when favorite button is pressed
