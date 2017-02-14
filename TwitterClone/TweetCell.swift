@@ -61,12 +61,18 @@ class TweetCell: UITableViewCell {
             likeButton.setTitle("\(tweet.favoritesCount)", for: .normal)
             retweetButton.setTitle("\(tweet.retweetCount)", for: .normal)
             
+            //Checks to see if tweet is favorited
+            //if favorited, then change the title to red
+            //else: Change the title to darkGray
             if tweet.isFavorited {
                 likeButton.setTitleColor(UIColor.red, for: UIControlState.normal)
             } else {
                 likeButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
             }
             
+            //Checks to see if the tweet is retweeted
+            //If favorited, then change the title to green
+            //else: Change the title to darkGray
             if tweet.isRetweeted {
                 retweetButton.setTitleColor(UIColor.green, for: UIControlState.normal)
             } else {
