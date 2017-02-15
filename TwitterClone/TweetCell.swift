@@ -22,6 +22,7 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var directMessageButton: UIButton!
     
     //dateFormatter
     let dateformatter = DateFormatter()
@@ -201,6 +202,11 @@ class TweetCell: UITableViewCell {
             
         }
         
+    }
+    
+    @IBAction func directMessageButtonPressed(_ sender: Any) {
+        
+        print("Slide into them DM's")
     }
 
     override func awakeFromNib() {
