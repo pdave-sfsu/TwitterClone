@@ -92,8 +92,6 @@ class TweetCell: UITableViewCell {
     //Action for when retweet button is pressed
     @IBAction func retweetButtonPressed(_ sender: Any) {
         
-        print("TweetCell: retweeting")
-        
         //If: the tweet has not been retweeted, then retweet
         //Else: the tweet has been retweeted, then unretweet
         if !(tweet.isRetweeted){
@@ -113,10 +111,12 @@ class TweetCell: UITableViewCell {
                 
                 //Increase the retweet count by 1
                 self.tweet.retweetCount += 1
+                //Change the value on screen
                 self.retweetButton.setTitle("\(self.tweet.retweetCount)", for: .normal)
                 
+                //Error
             }, failure: { (error: Error) in
-                print(error)
+                print("TweetCell: Error: \(error)")
             })
 
         } else {
@@ -124,7 +124,7 @@ class TweetCell: UITableViewCell {
             //Using the sharedInstance to send the id of the tweet to unretweet
             TwitterClient.sharedInstance?.destroyRetweet(id: tweet.idStr, success: { 
                 
-                print("TweetCell: Unretweet")
+                print("TweetCell: UnRetweet")
                 
                 //Changes the status of isRetweeted to false
                 self.tweet.isRetweeted = false
@@ -136,21 +136,23 @@ class TweetCell: UITableViewCell {
                 
                 //Decrease the retweet count by 1
                 self.tweet.retweetCount -= 1
+                //Change the value on screen
                 self.retweetButton.setTitle("\(self.tweet.retweetCount)", for: .normal)
                 
+                //Error
             }, failure: { (error: Error) in
-                print(error)
+                print("TweetCell: Error: \(error)")
             })
             
         }
-        
         
     }
     
     //Action for when favorite button is pressed
     @IBAction func favoriteButtonPressed(_ sender: Any) {
         
-        //Favoriting
+        //If: the tweet has not been favorited, then favorite
+        //Else: the tweet has been favorited, then unfavorite
         if !(tweet.isFavorited) {
             
             //Accessing the createFavorite method through the sharedInstance
@@ -169,6 +171,7 @@ class TweetCell: UITableViewCell {
                 
                 //Increase the favorite count by 1
                 self.tweet.favoritesCount += 1
+                //Changes the value on screen
                 self.likeButton.setTitle("\(self.tweet.favoritesCount)", for: .normal)
                 
                 //Error
@@ -176,9 +179,9 @@ class TweetCell: UITableViewCell {
                 print("TweetCell: Error" + error.localizedDescription)
             })
             
-            //Unfavoriting!
         } else {
             
+            //Accessing the destroyFavorite method through the shardInstance
             TwitterClient.sharedInstance?.destoryFavorite(params: ["id": self.tweet.idStr], success: { (retweet) in
                 
                 print("TweetCell: UnFavorited!")
@@ -193,11 +196,12 @@ class TweetCell: UITableViewCell {
                 
                 //Decrease the favorite count by 1
                 self.tweet.favoritesCount -= 1
+                //Changes the value on screen
                 self.likeButton.setTitle("\(self.tweet.favoritesCount)", for: .normal)
                 
                 //Error
             }, failure: { (error: Error) in
-                print("TweetCell: Error")
+                print("TweetCell: Error" + error.localizedDescription)
             })
             
         }
@@ -206,7 +210,7 @@ class TweetCell: UITableViewCell {
     
     @IBAction func directMessageButtonPressed(_ sender: Any) {
         
-        print("Slide into them DM's")
+        print("TweetCell: Direct Message Button Pressed")
     }
 
     override func awakeFromNib() {
