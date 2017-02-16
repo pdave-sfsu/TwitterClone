@@ -186,7 +186,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             
             //Error
         }, failure: { (task: URLSessionDataTask?, error: Error) -> Void in
-            print("couldn't retweet")
+            print("Couldn't retweet")
             failure(error)
         })
     }

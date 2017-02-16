@@ -24,13 +24,13 @@ class LoginViewController: UIViewController {
         //Uses shared instance to login from TwitterClient
         TwitterClient.sharedInstance?.login(success: {
             
-            print("onLoginButton: I've logged in!")
-            
             //Used the segue identifier to perform segue to Navigationbar
             //Goes to the TweetsViewController/HomeTimeline
             self.performSegue(withIdentifier: "loginSegue", sender: nil)
+            
+            //Error
         }) { (error: NSError) in
-            print("Error: \(error.localizedDescription)")
+            print("LoginViewController Error: \(error.localizedDescription)")
         }
         
     }

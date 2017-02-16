@@ -40,7 +40,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             //Error
         }, failure: { (error: NSError) in
-            print(error.localizedDescription)
+            print("TweetViewController" + error.localizedDescription)
         })
     }
     
