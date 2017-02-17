@@ -10,10 +10,28 @@ import UIKit
 
 class TweetDetailViewController: UIViewController {
     
+    //Outlets
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nameButton: UIButton!
+    @IBOutlet weak var screennameButton: UIButton!
+    @IBOutlet weak var tweetLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var directMessageButton: UIButton!
+    
+    //tweet that will be displayed
     var tweet: Tweet!
 
+    //viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let description = tweet.favoritesCount
+        
+        print("\(description)")
 
         // Do any additional setup after loading the view.
     }

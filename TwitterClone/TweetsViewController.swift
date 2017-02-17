@@ -85,6 +85,13 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         print("Holy shit this worked")
         
+        let cell = sender as? UITableViewCell
+        
+        let indexPath = tableView.indexPath(for: cell!)
+        
+        let tweetDetailViewController = segue.destination as! TweetDetailViewController
+        
+        tweetDetailViewController.tweet = tweets[(indexPath?.row)!] as Tweet
         
      }
  
