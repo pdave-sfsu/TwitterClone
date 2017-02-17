@@ -21,6 +21,8 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var directMessageButton: UIButton!
+    @IBOutlet weak var retweetCountButton: UIButton!
+    @IBOutlet weak var likeCount: UIButton!
     
     let dateformatter = DateFormatter()
     
@@ -70,9 +72,25 @@ class TweetDetailViewController: UIViewController {
         retweetButton.setImage(UIImage(named: retweetButtonImage), for: UIControlState.normal)
         
         //Set the favorite and retweet count
-        favoriteButton.setTitle("\(tweet.favoritesCount)", for: .normal)
-        retweetButton.setTitle("\(tweet.retweetCount)", for: .normal)
+        if (tweet.favoritesCount == 0) {
+            likeCount.setTitle("\(tweet.favoritesCount) LIKES", for: .normal)
+        } else if (tweet.favoritesCount == 1) {
+            likeCount.setTitle("\(tweet.favoritesCount) LIKE", for: .normal)
+        } else {
+            likeCount.setTitle("\(tweet.favoritesCount) LIKES", for: .normal)
+        }
         
+        //Set the favorite and retweet count
+        if (tweet.retweetCount == 0) {
+            retweetCountButton.setTitle("\(tweet.retweetCount) RETWEETS", for: .normal)
+        } else if (tweet.retweetCount == 1) {
+            retweetCountButton.setTitle("\(tweet.retweetCount) RETWEET", for: .normal)
+        } else {
+            retweetCountButton.setTitle("\(tweet.retweetCount) RETWEETS", for: .normal)
+        }
+        
+        
+    
         //Checks to see if tweet is favorited
         //if favorited, then change the title to red
         //else: Change the title to darkGray

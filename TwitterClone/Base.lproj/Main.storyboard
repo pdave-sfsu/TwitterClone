@@ -314,10 +314,12 @@
                         <outlet property="dayLabel" destination="w6H-iy-DRK" id="8nS-LN-nnh"/>
                         <outlet property="directMessageButton" destination="GG1-c4-Jw5" id="zll-50-a25"/>
                         <outlet property="favoriteButton" destination="XGt-mc-GgA" id="ql5-RD-DfM"/>
+                        <outlet property="likeCount" destination="Kdk-kP-GsL" id="aXm-Gm-hpB"/>
                         <outlet property="nameButton" destination="4TA-GQ-WvT" id="quO-H2-znu"/>
                         <outlet property="profileImageView" destination="d2X-cs-HdE" id="pa6-AG-8xW"/>
                         <outlet property="replyButton" destination="NwH-PX-Uuv" id="vh2-9Z-Dae"/>
                         <outlet property="retweetButton" destination="FRj-q9-c4Z" id="WKs-xU-byi"/>
+                        <outlet property="retweetCountButton" destination="noy-va-rCP" id="5GW-Ub-fTC"/>
                         <outlet property="screennameButton" destination="ZXm-IJ-mwD" id="npT-ug-bxu"/>
                         <outlet property="timeLabel" destination="OMq-Iq-pih" id="B6L-Wb-zPC"/>
                         <outlet property="tweetLabel" destination="BKj-Ac-c5w" id="qn8-7a-QSb"/>
