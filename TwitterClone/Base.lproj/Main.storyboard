@@ -74,14 +74,14 @@
                                                         <constraint firstAttribute="height" constant="65" id="uK3-5b-5cq"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JiL-ME-hS0">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JiL-ME-hS0">
                                                     <rect key="frame" x="81" y="8" width="40" height="29"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <state key="normal" title="Name">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yA-Bf-WSz">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yA-Bf-WSz">
                                                     <rect key="frame" x="168" y="8" width="30" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <state key="normal" title="Time">
@@ -266,18 +266,30 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NwH-PX-Uuv">
                                 <rect key="frame" x="8" y="241" width="30" height="30"/>
                                 <state key="normal" image="reply-icon"/>
+                                <connections>
+                                    <action selector="replyButtonPressed:" destination="gvN-7O-Rpn" eventType="touchUpInside" id="hkD-q4-7I4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRj-q9-c4Z">
                                 <rect key="frame" x="115" y="241" width="30" height="30"/>
                                 <state key="normal" image="retweet-icon"/>
+                                <connections>
+                                    <action selector="retweetButtonPressed:" destination="gvN-7O-Rpn" eventType="touchUpInside" id="Rwp-59-VId"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG1-c4-Jw5">
                                 <rect key="frame" x="329" y="241" width="30" height="30"/>
                                 <state key="normal" image="message-icon"/>
+                                <connections>
+                                    <action selector="directMessageButtonPressed:" destination="gvN-7O-Rpn" eventType="touchUpInside" id="FoR-cr-dKH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGt-mc-GgA">
                                 <rect key="frame" x="222" y="241" width="30" height="30"/>
                                 <state key="normal" image="favor-icon"/>
+                                <connections>
+                                    <action selector="favoriteButtonPressed:" destination="gvN-7O-Rpn" eventType="touchUpInside" id="kg2-em-SUy"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

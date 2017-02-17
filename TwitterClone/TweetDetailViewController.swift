@@ -111,6 +111,23 @@ class TweetDetailViewController: UIViewController {
     
     }
 
+    
+    @IBAction func replyButtonPressed(_ sender: Any) {
+        print("Reply button pressed")
+    }
+    
+    @IBAction func retweetButtonPressed(_ sender: Any) {
+        print("retweet button pressed")
+    }
+    
+    @IBAction func favoriteButtonPressed(_ sender: Any) {
+        print("favorite button pressed")
+    }
+    
+    @IBAction func directMessageButtonPressed(_ sender: Any) {
+        print("DM button pressed")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
