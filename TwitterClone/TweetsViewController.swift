@@ -95,6 +95,14 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         }
         
+        if let button = sender as? UIButton {
+            
+            let profileViewController = segue.destination as! ProfileViewController
+            
+            profileViewController.user = User._currentUser
+            
+        }
+        
         
         
      }

@@ -20,16 +20,31 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var followersButton: UIButton!
     @IBOutlet weak var tweetCountButton: UIButton!
     
+    var user: User!
+    
+    var tweet: Tweet!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setProfile()
+        if (user != nil) {
+            setProfileByUser()
+        }
+        
+        if (tweet != nil) {
+            setProfileByTweet()
+        }
+        
 
         // Do any additional setup after loading the view.
     }
     
-    func setProfile() {
-        print("Profile being set")
+    func setProfileByUser() {
+        print("Profile being set by user")
+    }
+    
+    func setProfileByTweet() {
+        print("Profile being set by tweet")
     }
 
     override func didReceiveMemoryWarning() {
