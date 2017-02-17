@@ -52,8 +52,20 @@ class ProfileViewController: UIViewController {
         
         descriptionLabel.text = user.tagline as String?
         
+        if let profileBackgroundURL = user.profileBackgroundUrl {
+            print(profileBackgroundURL)
+            profileBackgroundImageView.setImageWith(profileBackgroundURL as URL)
+            print("We tried")
+        }
         
+        let followingCount = ("\(user.following_count) FOLLOWING")
+        followingButton.setTitle(followingCount, for: .normal)
         
+        let followerCount = ("\(user.followers_count) FOLLOWERS")
+        followersButton.setTitle(followerCount, for: .normal)
+        
+        let tweetCount = ("\(user.tweet_count) TWEETS")
+        tweetCountButton.setTitle(tweetCount, for: .normal)
     }
     
     func setProfileByTweet() {
