@@ -230,8 +230,11 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4TA-GQ-WvT">
-                                <rect key="frame" x="81" y="72" width="41" height="30"/>
-                                <state key="normal" title="Name"/>
+                                <rect key="frame" x="81" y="72" width="51" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Name">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKj-Ac-c5w">
                                 <rect key="frame" x="8" y="145" width="359" height="21"/>
@@ -240,52 +243,58 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMq-Iq-pih">
-                                <rect key="frame" x="8" y="174" width="38" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="8" y="174" width="34" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.3153335492626943" green="0.3153335492626943" blue="0.3153335492626943" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6H-iy-DRK">
-                                <rect key="frame" x="50" y="174" width="30" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="46" y="174" width="26.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.31533354930000002" green="0.31533354930000002" blue="0.31533354930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXm-IJ-mwD">
                                 <rect key="frame" x="81" y="106" width="86" height="30"/>
-                                <state key="normal" title="Screenname"/>
+                                <state key="normal" title="Screenname">
+                                    <color key="titleColor" red="0.3153335492626943" green="0.3153335492626943" blue="0.3153335492626943" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noy-va-rCP">
-                                <rect key="frame" x="8" y="203" width="60" height="30"/>
-                                <state key="normal" title="RTCount"/>
+                                <rect key="frame" x="8" y="200" width="60" height="30"/>
+                                <state key="normal" title="RTCount">
+                                    <color key="titleColor" red="0.3153335492626943" green="0.3153335492626943" blue="0.3153335492626943" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kdk-kP-GsL">
-                                <rect key="frame" x="72" y="203" width="70" height="30"/>
-                                <state key="normal" title="LikeCount"/>
+                                <rect key="frame" x="72" y="200" width="70" height="30"/>
+                                <state key="normal" title="LikeCount">
+                                    <color key="titleColor" red="0.3153335492626943" green="0.3153335492626943" blue="0.3153335492626943" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NwH-PX-Uuv">
-                                <rect key="frame" x="8" y="241" width="30" height="30"/>
+                                <rect key="frame" x="8" y="238" width="30" height="30"/>
                                 <state key="normal" image="reply-icon"/>
                                 <connections>
                                     <action selector="replyButtonPressed:" destination="gvN-7O-Rpn" eventType="touchUpInside" id="hkD-q4-7I4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRj-q9-c4Z">
-                                <rect key="frame" x="115" y="241" width="30" height="30"/>
+                                <rect key="frame" x="115" y="238" width="30" height="30"/>
                                 <state key="normal" image="retweet-icon"/>
                                 <connections>
                                     <action selector="retweetButtonPressed:" destination="gvN-7O-Rpn" eventType="touchUpInside" id="Rwp-59-VId"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG1-c4-Jw5">
-                                <rect key="frame" x="329" y="241" width="30" height="30"/>
+                                <rect key="frame" x="329" y="238" width="30" height="30"/>
                                 <state key="normal" image="message-icon"/>
                                 <connections>
                                     <action selector="directMessageButtonPressed:" destination="gvN-7O-Rpn" eventType="touchUpInside" id="FoR-cr-dKH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGt-mc-GgA">
-                                <rect key="frame" x="222" y="241" width="30" height="30"/>
+                                <rect key="frame" x="222" y="238" width="30" height="30"/>
                                 <state key="normal" image="favor-icon"/>
                                 <connections>
                                     <action selector="favoriteButtonPressed:" destination="gvN-7O-Rpn" eventType="touchUpInside" id="kg2-em-SUy"/>
@@ -309,7 +318,7 @@
                             <constraint firstItem="4TA-GQ-WvT" firstAttribute="leading" secondItem="d2X-cs-HdE" secondAttribute="trailing" constant="8" id="UJ6-y4-G1g"/>
                             <constraint firstItem="w6H-iy-DRK" firstAttribute="leading" secondItem="OMq-Iq-pih" secondAttribute="trailing" constant="4" id="a9M-hq-0ob"/>
                             <constraint firstItem="d2X-cs-HdE" firstAttribute="leading" secondItem="tBG-Eh-7Hn" secondAttribute="leading" constant="8" id="bmX-YW-rMi"/>
-                            <constraint firstItem="ZXm-IJ-mwD" firstAttribute="top" secondItem="4TA-GQ-WvT" secondAttribute="bottom" constant="4" id="g1z-pj-jb9"/>
+                            <constraint firstItem="ZXm-IJ-mwD" firstAttribute="top" secondItem="4TA-GQ-WvT" secondAttribute="bottom" id="g1z-pj-jb9"/>
                             <constraint firstItem="GG1-c4-Jw5" firstAttribute="leading" secondItem="XGt-mc-GgA" secondAttribute="trailing" constant="77" id="jzw-HP-ZNg"/>
                             <constraint firstItem="OMq-Iq-pih" firstAttribute="leading" secondItem="BKj-Ac-c5w" secondAttribute="leading" id="oBb-FU-s6n"/>
                             <constraint firstItem="noy-va-rCP" firstAttribute="leading" secondItem="OMq-Iq-pih" secondAttribute="leading" id="qFB-ZT-EEE"/>
