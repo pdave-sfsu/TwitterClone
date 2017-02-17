@@ -9,13 +9,27 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
+    @IBOutlet weak var profileBackgroundImageView: UIImageView!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var editProfileButton: UIButton!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var screennameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var followingButton: UIButton!
+    @IBOutlet weak var followersButton: UIButton!
+    @IBOutlet weak var tweetCountButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("This worked")
+        setProfile()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func setProfile() {
+        print("Profile being set")
     }
 
     override func didReceiveMemoryWarning() {

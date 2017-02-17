@@ -33,7 +33,7 @@ class TweetDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setMainTweet();
+        setMainTweet()
 
         // Do any additional setup after loading the view.
     }
