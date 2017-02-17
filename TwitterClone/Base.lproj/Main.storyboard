@@ -44,6 +44,24 @@
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="Sye-mn-39m">
+            <objects>
+                <viewController id="NcD-uM-JbC" customClass="ProfileViewController" customModule="TwitterClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c2y-mS-HWm"/>
+                        <viewControllerLayoutGuide type="bottom" id="5U3-AA-7RS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tie-w3-H7b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PtN-HH-He5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="-530"/>
+        </scene>
         <!--Tweets View Controller-->
         <scene sceneID="NNS-qx-Q6T">
             <objects>
@@ -200,6 +218,16 @@
                             <connections>
                                 <action selector="onLogoutButton:" destination="o3e-hS-UdP" id="qsb-ee-0q5"/>
                             </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="WUi-Zh-Q2f">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B7t-cy-cZQ">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Profile"/>
+                                <connections>
+                                    <segue destination="NcD-uM-JbC" kind="show" id="NZl-nP-ry7"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
