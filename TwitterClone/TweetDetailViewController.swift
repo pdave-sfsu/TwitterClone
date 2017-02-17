@@ -71,24 +71,10 @@ class TweetDetailViewController: UIViewController {
         favoriteButton.setImage(UIImage(named: favoriteButtonImage), for: UIControlState.normal)
         retweetButton.setImage(UIImage(named: retweetButtonImage), for: UIControlState.normal)
         
-        //Set the favorite and retweet count
-        if (tweet.favoritesCount == 0) {
-            likeCount.setTitle("\(tweet.favoritesCount) LIKES", for: .normal)
-        } else if (tweet.favoritesCount == 1) {
-            likeCount.setTitle("\(tweet.favoritesCount) LIKE", for: .normal)
-        } else {
-            likeCount.setTitle("\(tweet.favoritesCount) LIKES", for: .normal)
-        }
-        
-        //Set the favorite and retweet count
-        if (tweet.retweetCount == 0) {
-            retweetCountButton.setTitle("\(tweet.retweetCount) RETWEETS", for: .normal)
-        } else if (tweet.retweetCount == 1) {
-            retweetCountButton.setTitle("\(tweet.retweetCount) RETWEET", for: .normal)
-        } else {
-            retweetCountButton.setTitle("\(tweet.retweetCount) RETWEETS", for: .normal)
-        }
-        
+
+        favoriteCountDisplay()
+
+        retweetCountDisplay()
         
     
         //Checks to see if tweet is favorited
@@ -109,6 +95,32 @@ class TweetDetailViewController: UIViewController {
             retweetButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
         }
     
+    }
+    
+    func retweetCountDisplay () {
+        
+        //Set the favorite and retweet count
+        if (tweet.retweetCount == 0) {
+            retweetCountButton.setTitle("\(tweet.retweetCount) RETWEETS", for: .normal)
+        } else if (tweet.retweetCount == 1) {
+            retweetCountButton.setTitle("\(tweet.retweetCount) RETWEET", for: .normal)
+        } else {
+            retweetCountButton.setTitle("\(tweet.retweetCount) RETWEETS", for: .normal)
+        }
+        
+    }
+    
+    func favoriteCountDisplay () {
+        
+        //Set the favorite and retweet count
+        if (tweet.favoritesCount == 0) {
+            likeCount.setTitle("\(tweet.favoritesCount) LIKES", for: .normal)
+        } else if (tweet.favoritesCount == 1) {
+            likeCount.setTitle("\(tweet.favoritesCount) LIKE", for: .normal)
+        } else {
+            likeCount.setTitle("\(tweet.favoritesCount) LIKES", for: .normal)
+        }
+        
     }
 
     
@@ -139,7 +151,9 @@ class TweetDetailViewController: UIViewController {
                 //Increase the retweet count by 1
                 self.tweet.retweetCount += 1
                 //Change the value on screen
-                self.retweetCountButton.setTitle("\(self.tweet.retweetCount)", for: .normal)
+                
+                
+                self.retweetCountDisplay()
                 
                 //Error
             }, failure: { (error: Error) in
@@ -164,7 +178,8 @@ class TweetDetailViewController: UIViewController {
                 //Decrease the retweet count by 1
                 self.tweet.retweetCount -= 1
                 //Change the value on screen
-                self.retweetCountButton.setTitle("\(self.tweet.retweetCount)", for: .normal)
+                
+                self.retweetCountDisplay()
                 
                 //Error
             }, failure: { (error: Error) in
@@ -199,7 +214,8 @@ class TweetDetailViewController: UIViewController {
                 //Increase the favorite count by 1
                 self.tweet.favoritesCount += 1
                 //Changes the value on screen
-                self.likeCount.setTitle("\(self.tweet.favoritesCount)", for: .normal)
+                
+                self.favoriteCountDisplay()
                 
                 //Error
             }, failure: { (error: Error) in
@@ -224,7 +240,8 @@ class TweetDetailViewController: UIViewController {
                 //Decrease the favorite count by 1
                 self.tweet.favoritesCount -= 1
                 //Changes the value on screen
-                self.likeCount.setTitle("\(self.tweet.favoritesCount)", for: .normal)
+                
+                self.favoriteCountDisplay()
                 
                 //Error
             }, failure: { (error: Error) in
