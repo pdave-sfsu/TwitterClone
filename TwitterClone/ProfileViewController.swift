@@ -41,6 +41,19 @@ class ProfileViewController: UIViewController {
     
     func setProfileByUser() {
         print("Profile being set by user")
+        
+        if let profileURL = user.profileUrl {
+            profileImageView.setImageWith(profileURL as URL)
+        }
+        
+        nameLabel.text = user.name as String?
+        
+        screennameLabel.text = user.screenname as String?
+        
+        descriptionLabel.text = user.tagline as String?
+        
+        
+        
     }
     
     func setProfileByTweet() {
