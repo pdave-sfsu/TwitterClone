@@ -22,6 +22,8 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var directMessageButton: UIButton!
     
+    let dateformatter = DateFormatter()
+    
     //tweet that will be displayed
     var tweet: Tweet!
 
@@ -29,11 +31,66 @@ class TweetDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let description = tweet.favoritesCount
-        
-        print("\(description)")
+        setMainTweet();
 
         // Do any additional setup after loading the view.
+    }
+    
+    func setMainTweet() {
+        
+        //Changed the name
+        nameButton.setTitle(tweet.user?.name as String?, for: .normal)
+        //Changd the screenname and properly formatted it
+        screennameButton.setTitle("@" + (tweet.user!.screenname as String!)!, for: .normal)
+        //Changed the tweet text
+        tweetLabel.text = tweet.text
+        
+        //Safely unwrap the profileURL and then set the image
+        if let profileURL = tweet.user?.profileUrl{
+            profileImageView.setImageWith(profileURL as URL)
+        }
+        
+        //Set the dateformat to hour:minute AM/PM format
+        dateformatter.dateFormat = "h:mm a"
+        //Set the date
+        timeLabel.text  = dateformatter.string(from: tweet.timestamp!)
+        
+        //Set the dateformat to hour:minute AM/PM format
+        dateformatter.dateFormat = "dd MMM YY"
+        //Set the date
+        dayLabel.text = dateformatter.string(from: tweet.timestamp!)
+
+        
+        //Figures out the appropriate image
+        //Depending upon if the current user favorited or retweeted a page
+        let favoriteButtonImage = tweet.isFavorited ? "favor-icon-red" : "favor-icon"
+        let retweetButtonImage = tweet.isRetweeted ? "retweet-icon-green" : "retweet-icon"
+        //Set appropriate image where necessary
+        favoriteButton.setImage(UIImage(named: favoriteButtonImage), for: UIControlState.normal)
+        retweetButton.setImage(UIImage(named: retweetButtonImage), for: UIControlState.normal)
+        
+        //Set the favorite and retweet count
+        favoriteButton.setTitle("\(tweet.favoritesCount)", for: .normal)
+        retweetButton.setTitle("\(tweet.retweetCount)", for: .normal)
+        
+        //Checks to see if tweet is favorited
+        //if favorited, then change the title to red
+        //else: Change the title to darkGray
+        if tweet.isFavorited {
+            favoriteButton.setTitleColor(UIColor.red, for: UIControlState.normal)
+        } else {
+            favoriteButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
+        }
+        
+        //Checks to see if the tweet is retweeted
+        //If favorited, then change the title to green
+        //else: Change the title to darkGray
+        if tweet.isRetweeted {
+            retweetButton.setTitleColor(UIColor.green, for: UIControlState.normal)
+        } else {
+            retweetButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
+        }
+    
     }
 
     override func didReceiveMemoryWarning() {
