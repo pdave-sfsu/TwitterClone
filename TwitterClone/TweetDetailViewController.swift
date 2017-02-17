@@ -118,10 +118,121 @@ class TweetDetailViewController: UIViewController {
     
     @IBAction func retweetButtonPressed(_ sender: Any) {
         print("retweet button pressed")
+        
+        //If: the tweet has not been retweeted, then retweet
+        //Else: the tweet has been retweeted, then unretweet
+        if !(tweet.isRetweeted){
+            
+            //Using the sharedInstance to send the id of the tweet to retweet
+            TwitterClient.sharedInstance?.createRetweet(id: tweet.idStr, success: {
+                
+                print("TweetDetailView: Retweet")
+                
+                //Changing the value of the isRetweeted to true
+                self.tweet.isRetweeted = true
+                
+                //Image turns green when it is retweeted
+                self.retweetButton.setImage(UIImage(named: "retweet-icon-green"), for: UIControlState.normal)
+                //Retweet count turns green
+                self.retweetButton.setTitleColor(UIColor.green, for: UIControlState.normal)
+                
+                //Increase the retweet count by 1
+                self.tweet.retweetCount += 1
+                //Change the value on screen
+                self.retweetCountButton.setTitle("\(self.tweet.retweetCount)", for: .normal)
+                
+                //Error
+            }, failure: { (error: Error) in
+                print("TweetCell: Error: \(error)")
+            })
+            
+        } else {
+            
+            //Using the sharedInstance to send the id of the tweet to unretweet
+            TwitterClient.sharedInstance?.destroyRetweet(id: tweet.idStr, success: {
+                
+                print("TweetCell: UnRetweet")
+                
+                //Changes the status of isRetweeted to false
+                self.tweet.isRetweeted = false
+                
+                //Image turns normal when it is unretweeted
+                self.retweetButton.setImage(UIImage(named: "retweet-icon"), for: UIControlState.normal)
+                //Retweet count turns normal
+                self.retweetButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
+                
+                //Decrease the retweet count by 1
+                self.tweet.retweetCount -= 1
+                //Change the value on screen
+                self.retweetCountButton.setTitle("\(self.tweet.retweetCount)", for: .normal)
+                
+                //Error
+            }, failure: { (error: Error) in
+                print("TweetCell: Error: \(error)")
+            })
+            
+        }
+
     }
     
     @IBAction func favoriteButtonPressed(_ sender: Any) {
         print("favorite button pressed")
+        
+        //If: the tweet has not been favorited, then favorite
+        //Else: the tweet has been favorited, then unfavorite
+        if !(tweet.isFavorited) {
+            
+            //Accessing the createFavorite method through the sharedInstance
+            //Passing in the tweetID
+            TwitterClient.sharedInstance?.createFavorite(params: ["id": self.tweet.idStr], success: { (retweet) in
+                
+                print("tweetdetailView: Favorited!")
+                
+                //Changes the status of isFavorited to true
+                self.tweet.isFavorited = true
+                
+                //Image turns red when it is favorited
+                self.favoriteButton.setImage(UIImage(named: "favor-icon-red"), for: UIControlState.normal)
+                //Favorite count turns red
+                self.favoriteButton.setTitleColor(UIColor.red, for: UIControlState.normal)
+                
+                //Increase the favorite count by 1
+                self.tweet.favoritesCount += 1
+                //Changes the value on screen
+                self.likeCount.setTitle("\(self.tweet.favoritesCount)", for: .normal)
+                
+                //Error
+            }, failure: { (error: Error) in
+                print("TweetCell: Error" + error.localizedDescription)
+            })
+            
+        } else {
+            
+            //Accessing the destroyFavorite method through the shardInstance
+            TwitterClient.sharedInstance?.destoryFavorite(params: ["id": self.tweet.idStr], success: { (retweet) in
+                
+                print("TweetCell: UnFavorited!")
+                
+                //Changes the status of isFavorited to false
+                self.tweet.isFavorited = false
+                
+                //Image turns normal when it is unfavorited
+                self.favoriteButton.setImage(UIImage(named: "favor-icon"), for: UIControlState.normal)
+                //Favorite count turns normal
+                self.favoriteButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
+                
+                //Decrease the favorite count by 1
+                self.tweet.favoritesCount -= 1
+                //Changes the value on screen
+                self.likeCount.setTitle("\(self.tweet.favoritesCount)", for: .normal)
+                
+                //Error
+            }, failure: { (error: Error) in
+                print("TweetCell: Error" + error.localizedDescription)
+            })
+            
+        }
+
     }
     
     @IBAction func directMessageButtonPressed(_ sender: Any) {
