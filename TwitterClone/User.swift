@@ -35,6 +35,8 @@ class User: NSObject {
         screenname = dictionary["screen_name"] as! NSString?
         tagline = dictionary["description"] as! NSString?
         
+        print(tagline)
+        
         //Retrieve profile pic url
         let profileUrlString = dictionary["profile_image_url_https"] as! NSString?
         
@@ -54,6 +56,8 @@ class User: NSObject {
         following_count = (dictionary["friends_count"] as? Int) ?? 0
         
         tweet_count = (dictionary["statuses_count"] as? Int) ?? 0
+        
+        print(tweet_count)
         
     }
     
