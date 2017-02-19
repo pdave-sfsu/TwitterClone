@@ -10,6 +10,8 @@ import UIKit
 
 class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet var profileImageTapGestureRecognizer: UITapGestureRecognizer!
+    
     //property that stores all the tweets
     var tweets: [Tweet]!
     
@@ -72,9 +74,22 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //Put tweet within the cell
         cell.tweet = tweet
         
+        cell.imagePressedButton.tag = indexPath.row
+        
         return cell
     }
     
+    @IBAction func profileImagePressed(_ sender: Any) {
+        
+        print("Bruh this took too long")
+        
+        
+    }
+    
+    @IBAction func profileImageButtonPressed(_ sender: Any) {
+        print("Let's see if this works")
+
+    }
     
      // MARK: - Navigation
      
@@ -95,11 +110,25 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         }
         
-        if let button = sender as? UIButton {
+        if segue.identifier == "currentUserProfile" {
             
             let profileViewController = segue.destination as! ProfileViewController
             
             profileViewController.user = User._currentUser
+            
+        }
+        
+        if segue.identifier == "otherUserProfile" {
+            
+            let button = sender as! UIButton
+            
+            let indexPath = button.tag
+            
+            print(indexPath)
+            
+            let profileViewController = segue.destination as! ProfileViewController
+            
+            profileViewController.user = tweets[indexPath].user
             
         }
         
@@ -112,4 +141,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+
 }

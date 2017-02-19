@@ -176,10 +176,14 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ttZ-0K-Cxw">
                                                     <rect key="frame" x="8" y="8" width="65" height="65"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="jOx-f9-3YZ"/>
                                                         <constraint firstAttribute="height" constant="65" id="uK3-5b-5cq"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="tXY-Wg-Dd4" appends="YES" id="5pm-ry-584"/>
+                                                    </connections>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JiL-ME-hS0">
                                                     <rect key="frame" x="81" y="8" width="40" height="29"/>
@@ -245,6 +249,13 @@
                                                         <action selector="favoriteButtonPressed:" destination="38y-bl-c80" eventType="touchUpInside" id="jqN-OM-9v7"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lY-nt-01R">
+                                                    <rect key="frame" x="8" y="8" width="65" height="65"/>
+                                                    <connections>
+                                                        <action selector="profileImageButtonPressed:" destination="o3e-hS-UdP" eventType="touchUpInside" id="b8X-bH-4a7"/>
+                                                        <segue destination="NcD-uM-JbC" kind="show" identifier="otherUserProfile" id="Yql-px-MRM"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="VBh-ZR-O4Q" secondAttribute="bottom" constant="8" id="4as-nu-YKc"/>
@@ -252,12 +263,15 @@
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ttZ-0K-Cxw" secondAttribute="bottom" constant="12" id="5lr-Su-yjJ"/>
                                                 <constraint firstItem="JiL-ME-hS0" firstAttribute="top" secondItem="ttZ-0K-Cxw" secondAttribute="top" id="7u4-7c-zuC"/>
                                                 <constraint firstItem="JiL-ME-hS0" firstAttribute="leading" secondItem="ttZ-0K-Cxw" secondAttribute="trailing" constant="8" id="7uy-IT-QtI"/>
+                                                <constraint firstItem="3lY-nt-01R" firstAttribute="leading" secondItem="ttZ-0K-Cxw" secondAttribute="leading" id="DTB-i2-w8v"/>
                                                 <constraint firstItem="VBh-ZR-O4Q" firstAttribute="leading" secondItem="JiL-ME-hS0" secondAttribute="leading" id="Dmq-Dw-ztU"/>
                                                 <constraint firstItem="QbB-Or-weB" firstAttribute="top" secondItem="H7Z-6W-VWM" secondAttribute="top" constant="8" id="Gd1-ch-udG"/>
                                                 <constraint firstItem="XYR-kk-e9L" firstAttribute="centerY" secondItem="VBh-ZR-O4Q" secondAttribute="centerY" id="JwZ-Yn-zzI"/>
                                                 <constraint firstItem="0yA-Bf-WSz" firstAttribute="top" secondItem="H7Z-6W-VWM" secondAttribute="top" constant="8" id="NOD-2r-1hW"/>
                                                 <constraint firstItem="Qnl-Ld-750" firstAttribute="top" secondItem="JiL-ME-hS0" secondAttribute="bottom" constant="1" id="Nsa-dN-s2N"/>
+                                                <constraint firstItem="3lY-nt-01R" firstAttribute="bottom" secondItem="ttZ-0K-Cxw" secondAttribute="bottom" id="Psc-gk-8Ry"/>
                                                 <constraint firstAttribute="trailing" secondItem="Qnl-Ld-750" secondAttribute="trailing" constant="8" id="QQK-p1-zdT"/>
+                                                <constraint firstItem="3lY-nt-01R" firstAttribute="trailing" secondItem="ttZ-0K-Cxw" secondAttribute="trailing" id="R4V-tS-6Q3"/>
                                                 <constraint firstItem="0yA-Bf-WSz" firstAttribute="leading" secondItem="QbB-Or-weB" secondAttribute="trailing" constant="4" id="RBs-b6-7Ro"/>
                                                 <constraint firstItem="lUz-Yj-gd4" firstAttribute="centerY" secondItem="VBh-ZR-O4Q" secondAttribute="centerY" id="SfD-vx-OIu"/>
                                                 <constraint firstItem="QbB-Or-weB" firstAttribute="leading" secondItem="JiL-ME-hS0" secondAttribute="trailing" constant="4" id="WOa-GO-8fV"/>
@@ -268,6 +282,7 @@
                                                 <constraint firstItem="VBh-ZR-O4Q" firstAttribute="top" secondItem="Qnl-Ld-750" secondAttribute="bottom" constant="8" id="fTT-SE-U7L"/>
                                                 <constraint firstItem="XYR-kk-e9L" firstAttribute="centerY" secondItem="VBh-ZR-O4Q" secondAttribute="centerY" id="gBc-fF-CRg"/>
                                                 <constraint firstItem="3Mz-FR-ez4" firstAttribute="centerY" secondItem="VBh-ZR-O4Q" secondAttribute="centerY" id="k7t-AF-fwu"/>
+                                                <constraint firstItem="3lY-nt-01R" firstAttribute="top" secondItem="ttZ-0K-Cxw" secondAttribute="top" id="kFS-U1-0cK"/>
                                                 <constraint firstItem="0yA-Bf-WSz" firstAttribute="top" secondItem="ttZ-0K-Cxw" secondAttribute="top" id="kbd-Ec-ViP"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0yA-Bf-WSz" secondAttribute="trailing" constant="8" id="nSV-Kd-ntZ"/>
                                                 <constraint firstItem="QbB-Or-weB" firstAttribute="top" secondItem="ttZ-0K-Cxw" secondAttribute="top" id="sUU-Df-OA7"/>
@@ -279,6 +294,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="directMessageButton" destination="3Mz-FR-ez4" id="yac-wR-2R2"/>
+                                            <outlet property="imagePressedButton" destination="3lY-nt-01R" id="g8u-gM-k83"/>
                                             <outlet property="likeButton" destination="XYR-kk-e9L" id="PDb-Zn-0Gd"/>
                                             <outlet property="nameButton" destination="JiL-ME-hS0" id="fDp-r6-Fes"/>
                                             <outlet property="pictureImageView" destination="ttZ-0K-Cxw" id="wbz-i9-UuL"/>
@@ -314,18 +330,24 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Profile"/>
                                 <connections>
-                                    <segue destination="NcD-uM-JbC" kind="show" id="NZl-nP-ry7"/>
+                                    <segue destination="NcD-uM-JbC" kind="show" identifier="currentUserProfile" id="NZl-nP-ry7"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="profileImageTapGestureRecognizer" destination="tXY-Wg-Dd4" id="cpH-IJ-JSV"/>
                         <outlet property="tableView" destination="a9l-a9-oCj" id="250-8J-EJV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Dc-Q8-XWd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="tXY-Wg-Dd4">
+                    <connections>
+                        <action selector="profileImagePressed:" destination="o3e-hS-UdP" id="OGy-3m-f7e"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1624.8" y="132.68365817091455"/>
+            <point key="canvasLocation" x="1628" y="178"/>
         </scene>
         <!--Tweet-->
         <scene sceneID="ml8-2N-SqA">
@@ -492,4 +514,7 @@
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Yql-px-MRM"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -35,7 +35,7 @@ class User: NSObject {
         screenname = dictionary["screen_name"] as! NSString?
         tagline = dictionary["description"] as! NSString?
         
-        print(tagline)
+        print(tagline!)
         
         //Retrieve profile pic url
         let profileUrlString = dictionary["profile_image_url_https"] as! NSString?

@@ -24,6 +24,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var directMessageButton: UIButton!
     
+    @IBOutlet weak var imagePressedButton: UIButton!
+    
     //dateFormatter
     let dateformatter = DateFormatter()
 
@@ -44,6 +46,8 @@ class TweetCell: UITableViewCell {
             if let profileURL = tweet.user?.profileUrl{
                 pictureImageView.setImageWith(profileURL as URL)
             }
+            
+            pictureImageView.isUserInteractionEnabled = true
             
             //Set the dateformat to hour:minute AM/PM format
             dateformatter.dateFormat = "h:mm a"
@@ -213,6 +217,8 @@ class TweetCell: UITableViewCell {
         
         print("TweetCell: Direct Message Button Pressed")
     }
+    
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
