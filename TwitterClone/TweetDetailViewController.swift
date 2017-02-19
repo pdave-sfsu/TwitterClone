@@ -24,22 +24,23 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var retweetCountButton: UIButton!
     @IBOutlet weak var likeCount: UIButton!
     
+    //dateformatter
     let dateformatter = DateFormatter()
     
     //tweet that will be displayed
     var tweet: Tweet!
 
-    //viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //sets the main tweet
         setMainTweet()
-        
-        
-        
-        // Do any additional setup after loading the view.
+
     }
     
+    
+    //Adds all the content for the main tweet
     func setMainTweet() {
         
         //Changed the name
@@ -56,15 +57,14 @@ class TweetDetailViewController: UIViewController {
         
         //Set the dateformat to hour:minute AM/PM format
         dateformatter.dateFormat = "h:mm a"
-        //Set the date
+        //Set the time
         timeLabel.text  = dateformatter.string(from: tweet.timestamp!)
         
-        //Set the dateformat to hour:minute AM/PM format
+        //Set the dateformat to day-month-year format
         dateformatter.dateFormat = "dd MMM YY"
         //Set the date
         dayLabel.text = dateformatter.string(from: tweet.timestamp!)
 
-        
         //Figures out the appropriate image
         //Depending upon if the current user favorited or retweeted a page
         let favoriteButtonImage = tweet.isFavorited ? "favor-icon-red" : "favor-icon"
@@ -73,48 +73,35 @@ class TweetDetailViewController: UIViewController {
         favoriteButton.setImage(UIImage(named: favoriteButtonImage), for: UIControlState.normal)
         retweetButton.setImage(UIImage(named: retweetButtonImage), for: UIControlState.normal)
         
-
+        //sets the favoriteCount and retweetCount and displays them appropriately
         favoriteCountDisplay()
-
         retweetCountDisplay()
-        
-    
-        //Checks to see if tweet is favorited
-        //if favorited, then change the title to red
-        //else: Change the title to darkGray
-        if tweet.isFavorited {
-            favoriteButton.setTitleColor(UIColor.red, for: UIControlState.normal)
-        } else {
-            favoriteButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
-        }
-        
-        //Checks to see if the tweet is retweeted
-        //If favorited, then change the title to green
-        //else: Change the title to darkGray
-        if tweet.isRetweeted {
-            retweetButton.setTitleColor(UIColor.green, for: UIControlState.normal)
-        } else {
-            retweetButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
-        }
     
     }
     
+    
+    //formats the retweet count and adds the "s" for plurality
     func retweetCountDisplay () {
         
-        //Set the favorite and retweet count
+        //Temporary fix: if 0, then 0 tweetCount
+        //Eventually, we want it to be hidden
         if (tweet.retweetCount == 0) {
             retweetCountButton.setTitle("\(tweet.retweetCount) RETWEETS", for: .normal)
+            
+        //if 1 retweet, then there is no plurarlity
         } else if (tweet.retweetCount == 1) {
             retweetCountButton.setTitle("\(tweet.retweetCount) RETWEET", for: .normal)
+            
+        //if more than 1 retweets, then add "s"
         } else {
             retweetCountButton.setTitle("\(tweet.retweetCount) RETWEETS", for: .normal)
         }
         
     }
     
+    //Same concept as retweetCount
     func favoriteCountDisplay () {
         
-        //Set the favorite and retweet count
         if (tweet.favoritesCount == 0) {
             likeCount.setTitle("\(tweet.favoritesCount) LIKES", for: .normal)
         } else if (tweet.favoritesCount == 1) {
@@ -126,14 +113,18 @@ class TweetDetailViewController: UIViewController {
     }
 
     
+    //Action for the replyButton
     @IBAction func replyButtonPressed(_ sender: Any) {
-        print("Reply button pressed")
         
+        print("TweetDetailViewController/replyButtonPressed(): Reply Button Pressed.")
         
     }
     
+    
+    //Action for retweetButton
     @IBAction func retweetButtonPressed(_ sender: Any) {
-        print("retweet button pressed")
+        
+        print("TweetDetailViewController/retweetButtonPressed(): Retweet Button Pressed.")
         
         //If: the tweet has not been retweeted, then retweet
         //Else: the tweet has been retweeted, then unretweet
@@ -142,26 +133,23 @@ class TweetDetailViewController: UIViewController {
             //Using the sharedInstance to send the id of the tweet to retweet
             TwitterClient.sharedInstance?.createRetweet(id: tweet.idStr, success: {
                 
-                print("TweetDetailView: Retweet")
+                print("TweetDetailViewController/retweetButtonPressed(): Retweet")
                 
                 //Changing the value of the isRetweeted to true
                 self.tweet.isRetweeted = true
                 
                 //Image turns green when it is retweeted
                 self.retweetButton.setImage(UIImage(named: "retweet-icon-green"), for: UIControlState.normal)
-                //Retweet count turns green
-                self.retweetButton.setTitleColor(UIColor.green, for: UIControlState.normal)
                 
                 //Increase the retweet count by 1
                 self.tweet.retweetCount += 1
+                
                 //Change the value on screen
-                
-                
                 self.retweetCountDisplay()
                 
                 //Error
             }, failure: { (error: Error) in
-                print("TweetCell: Error: \(error)")
+                print("TweetDetailViewController/retweetButtonPressed() Error: \(error.localizedDescription)")
             })
             
         } else {
@@ -169,33 +157,34 @@ class TweetDetailViewController: UIViewController {
             //Using the sharedInstance to send the id of the tweet to unretweet
             TwitterClient.sharedInstance?.destroyRetweet(id: tweet.idStr, success: {
                 
-                print("TweetCell: UnRetweet")
+                print("TweetDetailViewController/retweetButtonPressed(): UnRetweet")
                 
                 //Changes the status of isRetweeted to false
                 self.tweet.isRetweeted = false
                 
                 //Image turns normal when it is unretweeted
                 self.retweetButton.setImage(UIImage(named: "retweet-icon"), for: UIControlState.normal)
-                //Retweet count turns normal
-                self.retweetButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
                 
                 //Decrease the retweet count by 1
                 self.tweet.retweetCount -= 1
-                //Change the value on screen
                 
+                //Change the value on screen
                 self.retweetCountDisplay()
                 
                 //Error
             }, failure: { (error: Error) in
-                print("TweetCell: Error: \(error)")
+                print("TweetDetailViewController/retweetButtonPressed() Error: \(error.localizedDescription)")
             })
             
         }
 
     }
     
+    
+    //Action for favoriteButtonPressed
     @IBAction func favoriteButtonPressed(_ sender: Any) {
-        print("favorite button pressed")
+        
+        print("TweetDetailViewController/favoriteButtonPressed(): Favorite Button Pressed")
         
         //If: the tweet has not been favorited, then favorite
         //Else: the tweet has been favorited, then unfavorite
@@ -205,25 +194,23 @@ class TweetDetailViewController: UIViewController {
             //Passing in the tweetID
             TwitterClient.sharedInstance?.createFavorite(params: ["id": self.tweet.idStr], success: { (retweet) in
                 
-                print("tweetdetailView: Favorited!")
+                print("TweetDetailViewController/favoriteButtonPressed(): Favorited!")
                 
                 //Changes the status of isFavorited to true
                 self.tweet.isFavorited = true
                 
                 //Image turns red when it is favorited
                 self.favoriteButton.setImage(UIImage(named: "favor-icon-red"), for: UIControlState.normal)
-                //Favorite count turns red
-                self.favoriteButton.setTitleColor(UIColor.red, for: UIControlState.normal)
                 
                 //Increase the favorite count by 1
                 self.tweet.favoritesCount += 1
-                //Changes the value on screen
                 
+                //Changes the value on screen
                 self.favoriteCountDisplay()
                 
                 //Error
             }, failure: { (error: Error) in
-                print("TweetCell: Error" + error.localizedDescription)
+                print("TweetDetailViewController/favoriteButtonPressed(): Error" + error.localizedDescription)
             })
             
         } else {
@@ -231,61 +218,60 @@ class TweetDetailViewController: UIViewController {
             //Accessing the destroyFavorite method through the shardInstance
             TwitterClient.sharedInstance?.destoryFavorite(params: ["id": self.tweet.idStr], success: { (retweet) in
                 
-                print("TweetCell: UnFavorited!")
+                print("TweetDetailViewController/favoriteButtonPressed(): UnFavorited!")
                 
                 //Changes the status of isFavorited to false
                 self.tweet.isFavorited = false
                 
                 //Image turns normal when it is unfavorited
                 self.favoriteButton.setImage(UIImage(named: "favor-icon"), for: UIControlState.normal)
-                //Favorite count turns normal
-                self.favoriteButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
                 
                 //Decrease the favorite count by 1
                 self.tweet.favoritesCount -= 1
-                //Changes the value on screen
                 
+                //Changes the value on screen
                 self.favoriteCountDisplay()
                 
                 //Error
             }, failure: { (error: Error) in
-                print("TweetCell: Error" + error.localizedDescription)
+                print("TweetDetailViewController/favoriteButtonPressed(): Error" + error.localizedDescription)
             })
             
         }
 
     }
     
+    
+    //Action for directMessageButtonPressed
     @IBAction func directMessageButtonPressed(_ sender: Any) {
-        print("DM button pressed")
+        
+        print("TweetDetailViewController/directionMessageButtonPressed()")
+        
     }
+    
+
+    //Bunch for segues
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        //reply to ComposeTweetViewController
+        if segue.identifier == "replyFromDetailView" {
+            
+            //reference to composeTweetViewController
+            let composeTweetViewController = segue.destination as! ComposeTweetViewController
+            
+            //setting the isReply to true
+            composeTweetViewController.isReply = true
+            
+            //setting the tweet
+            composeTweetViewController.tweet = tweet
+        }
+        
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
-        if segue.identifier == "replyFromDetailView" {
-            
-            let composeTweetViewController = segue.destination as! ComposeTweetViewController
-            
-            composeTweetViewController.replyUser = tweet.user
-            
-            composeTweetViewController.isReply = true
-            
-            composeTweetViewController.tweet = tweet
-        }
-        
-    }
- 
 
 }

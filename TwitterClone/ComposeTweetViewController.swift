@@ -15,7 +15,6 @@ class ComposeTweetViewController: UIViewController {
     @IBOutlet weak var tweetCharacterCountLabel: UILabel!
     @IBOutlet weak var tweetSendButton: UIButton!
     
-    var replyUser: User!
     var isReply: Bool = false
     var tweet: Tweet!
     
@@ -25,7 +24,7 @@ class ComposeTweetViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         if isReply {
-            tweetTextView.text = "@\(replyUser.screenname as! String)"
+            tweetTextView.text = "@\(tweet.user?.screenname as! String)"
         }
     }
 
