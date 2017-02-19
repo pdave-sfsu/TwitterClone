@@ -20,6 +20,20 @@ class ComposeTweetViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func sendTweetButtonPressed(_ sender: Any) {
+        
+        print("SendTweetButtonPressed")
+        
+        var escapedTweetMessage = tweetTextView.text!
+        
+        escapedTweetMessage = escapedTweetMessage.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        
+        TwitterClient.sharedInstance?.compose(escapedTweetMessage, params: nil, completion: { (error) -> () in
+            print("composing tweet")
+        })
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

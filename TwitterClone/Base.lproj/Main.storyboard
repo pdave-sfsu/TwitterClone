@@ -190,6 +190,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <state key="normal" title="Tweet"/>
                                 <connections>
+                                    <action selector="sendTweetButtonPressed:" destination="gDF-5S-bu2" eventType="touchUpInside" id="FQ9-Jf-tOt"/>
                                     <segue destination="o3e-hS-UdP" kind="show" id="Tgc-Jh-hBR"/>
                                 </connections>
                             </button>
