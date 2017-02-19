@@ -14,9 +14,17 @@ class User: NSObject {
     //properties that are within the user
     var name: NSString?
     var screenname: NSString?
+    
+    //description of the user
     var tagline: NSString?
+    
+    //Profile picture URL
     var profileUrl: NSURL?
+    //Profile header picture URL
     var profileBackgroundUrl: NSURL?
+    
+    //Followers,following, and tweet count
+    //Initialized to 0
     var followers_count: Int = 0
     var following_count: Int = 0
     var tweet_count: Int = 0
@@ -35,28 +43,25 @@ class User: NSObject {
         screenname = dictionary["screen_name"] as! NSString?
         tagline = dictionary["description"] as! NSString?
         
-        
         //Retrieve profile pic url
         let profileUrlString = dictionary["profile_image_url_https"] as! NSString?
-        
-        //safely unwrap and set the profile URL
+        //safely unwrap and set the profile picture
         if let profileUrlString = profileUrlString {
             profileUrl = NSURL(string: profileUrlString as String)
         }
         
+        //Retrieve header profile pic URL
         let profileBackgroundUrlString = dictionary["profile_background_image_url_https"] as! NSString?
-        
+        //safely unwrap and set the profile header picture
         if let profileBackgroundUrlString = profileBackgroundUrlString {
             profileBackgroundUrl = NSURL(string: profileBackgroundUrlString as String)
         }
         
+        //Retrieve and set the followers, following, and tweet count
+        //Initialized to 0
         followers_count = (dictionary["followers_count"] as? Int) ?? 0
-        
         following_count = (dictionary["friends_count"] as? Int) ?? 0
-        
         tweet_count = (dictionary["statuses_count"] as? Int) ?? 0
-        
-        
     }
     
     //UserDidLogoutNotification property
@@ -91,6 +96,7 @@ class User: NSObject {
             return _currentUser
         }
         
+        //setting a current user
         set(user) {
             
             //Sets currentUser with new user
@@ -107,6 +113,8 @@ class User: NSObject {
 
                 //Saving the userData with key in UserDefaults
                 userDefault.set(data, forKey: "currentUserData")
+                
+            //if user is empty
             } else {
                 
                 //Saving nil with key in userDefaults

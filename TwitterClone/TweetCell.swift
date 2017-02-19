@@ -24,6 +24,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var directMessageButton: UIButton!
     
+    //Temporary fix to segue to user profile from a tweet
+    //Clear button with no text over the image view
     @IBOutlet weak var imagePressedButton: UIButton!
     
     //dateFormatter

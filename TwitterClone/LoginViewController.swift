@@ -10,6 +10,7 @@ import UIKit
 //import BDBOAuth1Manager
 import BDBOAuth1Manager
 
+//When the user needs to login
 class LoginViewController: UIViewController {
     
     //viewDidLoad
@@ -25,25 +26,21 @@ class LoginViewController: UIViewController {
         TwitterClient.sharedInstance?.login(success: {
             
             //Used the segue identifier to perform segue to Navigationbar
-            //Goes to the TweetsViewController/HomeTimeline
+            //Goes to the TweetsViewController
             self.performSegue(withIdentifier: "loginSegue", sender: nil)
             
             //Error
         }) { (error: NSError) in
-            print("LoginViewController Error: \(error.localizedDescription)")
+            print("LoginViewController/onLoginButton() Error: \(error.localizedDescription)")
         }
         
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

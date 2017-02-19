@@ -8,9 +8,8 @@
 
 import UIKit
 
+//Hometimeline
 class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    @IBOutlet var profileImageTapGestureRecognizer: UITapGestureRecognizer!
     
     //property that stores all the tweets
     var tweets: [Tweet]!

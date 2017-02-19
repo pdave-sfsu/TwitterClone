@@ -8,28 +8,36 @@
 
 import UIKit
 
+//Tweet model is type NSObject
 class Tweet: NSObject {
     
-    //Creating properties for all relevant data
+    //properties for all relevant data
     var text: String?
     var timestamp: Date?
     
-    //Creating count properties, setting them to 0
+    //count properties, setting them to 0
     var retweetCount: Int = 0
     var favoritesCount: Int = 0
     
-    //Creating the isFavorite and is Retweeted property
+    //isFavorite and is Retweeted property, setting them to false
     var isFavorited: Bool = false
     var isRetweeted: Bool = false
     
-    //Holds the id for the tweet
+    //id for the tweet
     var idStr: String
     
-    //Saving the user that created the tweet
+    //user that created the tweet
     var user: User?
     
-    //Constructor that parses through the dictionary
+    //JSON for tweet
+    var tweetDictionary: NSDictionary
+    
+    
+    //Constructor that parses through the individual tweet dictionary
     init(dictionary: NSDictionary) {
+        
+        //store complete JSON dictionary
+        tweetDictionary = dictionary
         
         //Initializing the user
         user = User(dictionary: dictionary["user"] as! NSDictionary)
@@ -44,16 +52,12 @@ class Tweet: NSObject {
         
         //Retrieving timestamp as String
         let timestampString = dictionary["created_at"] as? String
-        
         //Safely unwrapping the timestampString
         if let timestampString = timestampString {
-            
             //Declaring Dateformatter()
             let formatter = DateFormatter()
-            
             //set the format for the date
             formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-            
             //format the timestampString using the dateFormatter()
             timestamp = formatter.date(from: timestampString)
         }
@@ -66,8 +70,10 @@ class Tweet: NSObject {
         idStr = (dictionary["id_str"] as? String)!
     }
     
+    
     //Input: dictionaries of tweets
-    //Adds individual tweets to array and sends them back
+    //Adds individual tweets to array 
+    //Return: array of tweets
     class func tweetsWithArray(dictionaries: [NSDictionary]) -> [Tweet] {
         
         //Created an array of Tweet
@@ -85,6 +91,7 @@ class Tweet: NSObject {
         
         return tweets
     }
+    
     
     //Input: 1 tweet as a dictionary
     class func tweetAsDictionary (_ dict: NSDictionary) -> Tweet {
