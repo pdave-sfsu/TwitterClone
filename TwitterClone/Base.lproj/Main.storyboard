@@ -320,7 +320,6 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lY-nt-01R">
                                                     <rect key="frame" x="8" y="8" width="65" height="65"/>
                                                     <connections>
-                                                        <action selector="profileImageButtonPressed:" destination="o3e-hS-UdP" eventType="touchUpInside" id="b8X-bH-4a7"/>
                                                         <segue destination="NcD-uM-JbC" kind="show" identifier="otherUserProfile" id="Yql-px-MRM"/>
                                                     </connections>
                                                 </button>

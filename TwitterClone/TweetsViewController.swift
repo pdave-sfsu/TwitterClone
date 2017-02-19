@@ -17,7 +17,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //tableview outlet
     @IBOutlet weak var tableView: UITableView!
     
-    //viewDidLoad()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,9 +26,19 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         
         //Tells the table to follow the auto-layout constraint rules
+        //Makes the cells resizeable
         tableView.rowHeight = UITableViewAutomaticDimension
         //Estimated for the scrollHeight Dimension
         tableView.estimatedRowHeight = 300
+        
+        //calls method to retrieve tweets
+        getTweets()
+        
+    }
+    
+    
+    //Method to retrieve tweet
+    func getTweets() {
         
         //Used staredInstance to access homeTimeline method
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
@@ -41,9 +51,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             //Error
         }, failure: { (error: NSError) in
-            print("TweetViewController" + error.localizedDescription)
+            print("TweetViewController/getTweets() Error: \(error.localizedDescription)")
         })
+        
     }
+    
     
     //onLogoutButton: when the logout button is pushed
     @IBAction func onLogoutButton(_ sender: Any) {
@@ -73,27 +85,15 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //Put tweet within the cell
         cell.tweet = tweet
         
+        //Temporary fix to add the indexPath to the tag of the button
+        //Used to display the proper profile depending upon the tweet
         cell.imagePressedButton.tag = indexPath.row
         
         return cell
     }
     
-    @IBAction func profileImagePressed(_ sender: Any) {
-        
-        print("Bruh this took too long")
-        
-        
-    }
     
-    @IBAction func profileImageButtonPressed(_ sender: Any) {
-        print("Let's see if this works")
-
-    }
-    
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
         
@@ -133,7 +133,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         
-     }
+    }
  
     
     override func didReceiveMemoryWarning() {
@@ -141,6 +141,4 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
     
-    
-
 }
