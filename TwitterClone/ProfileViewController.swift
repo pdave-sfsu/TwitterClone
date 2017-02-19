@@ -63,9 +63,7 @@ class ProfileViewController: UIViewController {
         descriptionLabel.text = user.tagline as String?
         
         if let profileBackgroundURL = user.profileBackgroundUrl {
-            print(profileBackgroundURL)
             profileBackgroundImageView.setImageWith(profileBackgroundURL as URL)
-            print("We tried")
         }
         
         let followingCount = ("\(user.following_count) FOLLOWING")

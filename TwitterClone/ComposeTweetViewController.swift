@@ -14,23 +14,45 @@ class ComposeTweetViewController: UIViewController {
     
     @IBOutlet weak var tweetCharacterCountLabel: UILabel!
     @IBOutlet weak var tweetSendButton: UIButton!
+    
+    var replyUser: User!
+    var isReply: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if isReply {
+            tweetTextView.text = "@\(replyUser.screenname as! String)"
+        }
     }
 
     @IBAction func sendTweetButtonPressed(_ sender: Any) {
         
         print("SendTweetButtonPressed")
         
-        var escapedTweetMessage = tweetTextView.text!
+        if isReply {
+            
+            
+            
+            print("reply")
+            
+            isReply = false
+            
+        } else {
+            
+            var escapedTweetMessage = tweetTextView.text!
+            
+            escapedTweetMessage = escapedTweetMessage.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            
+            TwitterClient.sharedInstance?.compose(escapedTweetMessage, params: nil, completion: { (error) -> () in
+                print("composing tweet")
+            })
+            
+        }
         
-        escapedTweetMessage = escapedTweetMessage.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
-        TwitterClient.sharedInstance?.compose(escapedTweetMessage, params: nil, completion: { (error) -> () in
-            print("composing tweet")
-        })
         
     }
     

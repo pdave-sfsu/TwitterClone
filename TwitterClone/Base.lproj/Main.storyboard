@@ -487,6 +487,7 @@
                                 <state key="normal" image="reply-icon"/>
                                 <connections>
                                     <action selector="replyButtonPressed:" destination="gvN-7O-Rpn" eventType="touchUpInside" id="hkD-q4-7I4"/>
+                                    <segue destination="gDF-5S-bu2" kind="show" identifier="replyFromDetailView" id="om3-Hq-quf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRj-q9-c4Z">
@@ -588,5 +589,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Yql-px-MRM"/>
         <segue reference="Tgc-Jh-hBR"/>
+        <segue reference="om3-Hq-quf"/>
     </inferredMetricsTieBreakers>
 </document>
