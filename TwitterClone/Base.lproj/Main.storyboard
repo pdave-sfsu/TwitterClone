@@ -110,12 +110,21 @@
                                     <color key="titleColor" red="0.48722878889999999" green="0.48722878889999999" blue="0.48722878889999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPA-7Z-FN8">
+                                <rect key="frame" x="8" y="397" width="171" height="39"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <state key="normal" title="Compose Tweet"/>
+                                <connections>
+                                    <segue destination="gDF-5S-bu2" kind="show" id="c47-vX-lj7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="toS-8B-GMr" firstAttribute="leading" secondItem="tSe-Wb-Nu0" secondAttribute="leading" id="1Xr-ba-cNO"/>
                             <constraint firstItem="L0T-Rv-i6c" firstAttribute="top" secondItem="vV7-5T-Xa0" secondAttribute="bottom" constant="8" id="2ab-bd-DLN"/>
                             <constraint firstItem="cEW-tc-OGN" firstAttribute="centerY" secondItem="vV7-5T-Xa0" secondAttribute="centerY" id="49J-P3-qrH"/>
+                            <constraint firstItem="VPA-7Z-FN8" firstAttribute="top" secondItem="zAr-B6-w5m" secondAttribute="bottom" constant="12" id="4CY-aH-EAb"/>
                             <constraint firstItem="HEs-R1-HJE" firstAttribute="leading" secondItem="5Pf-Zt-i4P" secondAttribute="trailing" constant="20" id="8Yh-hJ-944"/>
                             <constraint firstItem="tSe-Wb-Nu0" firstAttribute="leading" secondItem="L0T-Rv-i6c" secondAttribute="leading" id="HBG-DR-JYd"/>
                             <constraint firstItem="e93-wl-h5K" firstAttribute="leading" secondItem="tie-w3-H7b" secondAttribute="leading" id="Jym-0n-744"/>
@@ -124,6 +133,7 @@
                             <constraint firstItem="HEs-R1-HJE" firstAttribute="centerY" secondItem="5Pf-Zt-i4P" secondAttribute="centerY" id="WGs-0R-EBO"/>
                             <constraint firstAttribute="trailing" secondItem="e93-wl-h5K" secondAttribute="trailing" id="Y6r-CO-7uw"/>
                             <constraint firstItem="L0T-Rv-i6c" firstAttribute="leading" secondItem="vV7-5T-Xa0" secondAttribute="leading" id="d4O-Fs-uZS"/>
+                            <constraint firstItem="VPA-7Z-FN8" firstAttribute="leading" secondItem="zAr-B6-w5m" secondAttribute="leading" id="eCD-0b-rL0"/>
                             <constraint firstItem="5Pf-Zt-i4P" firstAttribute="leading" secondItem="zAr-B6-w5m" secondAttribute="trailing" constant="20" id="enA-ej-6ad"/>
                             <constraint firstItem="5Pf-Zt-i4P" firstAttribute="centerY" secondItem="zAr-B6-w5m" secondAttribute="centerY" id="j6T-aa-7yn"/>
                             <constraint firstAttribute="trailing" secondItem="cEW-tc-OGN" secondAttribute="trailing" constant="8" id="jiU-HP-mNc"/>
@@ -136,6 +146,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="composeTweet" destination="VPA-7Z-FN8" id="hG9-DN-vp8"/>
                         <outlet property="descriptionLabel" destination="toS-8B-GMr" id="E2h-Qj-Vos"/>
                         <outlet property="editProfileButton" destination="cEW-tc-OGN" id="5Dz-nP-e27"/>
                         <outlet property="followersButton" destination="5Pf-Zt-i4P" id="aV8-Tg-gEL"/>
@@ -150,6 +161,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PtN-HH-He5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1628" y="-530.28485757121439"/>
+        </scene>
+        <!--Compose Tweet View Controller-->
+        <scene sceneID="yPO-Cd-hcF">
+            <objects>
+                <viewController id="gDF-5S-bu2" customClass="ComposeTweetViewController" customModule="TwitterClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RB6-Z8-ZfH"/>
+                        <viewControllerLayoutGuide type="bottom" id="diN-E0-Qdr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pbs-7N-369">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What's happening?" translatesAutoresizingMaskIntoConstraints="NO" id="oeW-jh-2e1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                                <color key="backgroundColor" red="0.9292219883419689" green="0.9292219883419689" blue="0.9292219883419689" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="375" id="Edd-3m-9Ut"/>
+                                    <constraint firstAttribute="height" constant="350" id="Lou-pO-cD8"/>
+                                    <constraint firstAttribute="width" constant="375" id="ZdB-YA-7s1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QqK-MN-jqf">
+                                <rect key="frame" x="302" y="358" width="65" height="39"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <state key="normal" title="Tweet"/>
+                                <connections>
+                                    <segue destination="o3e-hS-UdP" kind="show" id="Tgc-Jh-hBR"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Re5-XF-wCk">
+                                <rect key="frame" x="261.5" y="367" width="28.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QqK-MN-jqf" firstAttribute="leading" secondItem="Re5-XF-wCk" secondAttribute="trailing" constant="12" id="2up-fc-4Sh"/>
+                            <constraint firstItem="oeW-jh-2e1" firstAttribute="leading" secondItem="Pbs-7N-369" secondAttribute="leading" id="dK5-cO-HtD"/>
+                            <constraint firstItem="QqK-MN-jqf" firstAttribute="centerY" secondItem="Re5-XF-wCk" secondAttribute="centerY" id="es0-Oe-0iJ"/>
+                            <constraint firstItem="oeW-jh-2e1" firstAttribute="top" secondItem="Pbs-7N-369" secondAttribute="top" id="l7m-l9-DQM"/>
+                            <constraint firstAttribute="trailing" secondItem="QqK-MN-jqf" secondAttribute="trailing" constant="8" id="llI-91-K6y"/>
+                            <constraint firstItem="QqK-MN-jqf" firstAttribute="top" secondItem="oeW-jh-2e1" secondAttribute="bottom" constant="8" id="sFO-A1-OyZ"/>
+                            <constraint firstAttribute="trailing" secondItem="oeW-jh-2e1" secondAttribute="trailing" id="x8I-Oy-SYN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tweetTextView" destination="oeW-jh-2e1" id="k9F-H7-qTC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IkX-o2-RNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2480.8000000000002" y="-539.28035982008998"/>
         </scene>
         <!--Tweets View Controller-->
         <scene sceneID="NNS-qx-Q6T">
@@ -347,7 +415,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1628" y="178"/>
+            <point key="canvasLocation" x="1628" y="242"/>
         </scene>
         <!--Tweet-->
         <scene sceneID="ml8-2N-SqA">
@@ -487,7 +555,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1a7-Cn-1WJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2482.4000000000001" y="134.48275862068968"/>
+            <point key="canvasLocation" x="2502" y="197"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g4Z-6Q-r5W">
@@ -516,5 +584,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Yql-px-MRM"/>
+        <segue reference="Tgc-Jh-hBR"/>
     </inferredMetricsTieBreakers>
 </document>

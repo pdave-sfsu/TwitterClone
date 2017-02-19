@@ -20,6 +20,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var followersButton: UIButton!
     @IBOutlet weak var tweetCountButton: UIButton!
     
+    @IBOutlet weak var composeTweet: UIButton!
+    
     var user: User!
     
     var tweet: Tweet!
@@ -27,9 +29,17 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if user != User._currentUser {
+            composeTweet.isHidden = true
+        } else {
+            composeTweet.isHidden = false
+        }
+        
         if (user != nil) {
             setProfileByUser()
         }
+        
+        
         
         if (tweet != nil) {
             setProfileByTweet()
