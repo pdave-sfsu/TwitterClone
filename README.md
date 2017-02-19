@@ -75,18 +75,18 @@ I had a lot of trouble with retweeting and favoriting apps. The videos were also
     
 # Project 5 - TwitterClone
 
-Time spent: **X** hours spent in total
+Time spent: 25 hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
 - [X] Tweet Details Page: User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
-- [ ] Profile page:
-   - [ ] Contains the user header view
-   - [ ] Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Home Timeline: Tapping on a user image should bring up that user's profile page
-- [ ] Compose Page: User can compose a new tweet by tapping on a compose button.
+- [X] Profile page:
+   - [X] Contains the user header view
+   - [X] Contains a section with the users basic stats: # tweets, # following, # followers
+- [X] Home Timeline: Tapping on a user image should bring up that user's profile page
+- [X] Compose Page: User can compose a new tweet by tapping on a compose button.
 
 The following **optional** features are implemented:
 
@@ -104,19 +104,19 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [X] List anything else that you can get done to improve the app functionality!
 - [X] In detailTweetView, the plural of likes and retweets.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. 
-2. 
+1. API needs to be more clear. 
+2. Go into more detail on closures and optionals
 
 ## Video Walkthrough 
 
-Here's a walkthrough of implemented user stories:
+Here's a walkthrough of implemented user stories (2/18):
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![animatedGIF](TwitterGIF3.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
