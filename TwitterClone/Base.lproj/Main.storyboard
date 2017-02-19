@@ -212,6 +212,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tweetCharacterCountLabel" destination="Re5-XF-wCk" id="xcz-7l-frG"/>
+                        <outlet property="tweetSendButton" destination="QqK-MN-jqf" id="eon-1r-RuC"/>
                         <outlet property="tweetTextView" destination="oeW-jh-2e1" id="k9F-H7-qTC"/>
                     </connections>
                 </viewController>

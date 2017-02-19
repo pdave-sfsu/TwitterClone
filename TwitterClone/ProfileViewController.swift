@@ -29,7 +29,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if user != User._currentUser {
+        if user.screenname != User._currentUser?.screenname {
             composeTweet.isHidden = true
         } else {
             composeTweet.isHidden = false

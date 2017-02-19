@@ -12,6 +12,8 @@ class ComposeTweetViewController: UIViewController {
 
     @IBOutlet weak var tweetTextView: UITextView!
     
+    @IBOutlet weak var tweetCharacterCountLabel: UILabel!
+    @IBOutlet weak var tweetSendButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
