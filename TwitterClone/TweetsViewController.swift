@@ -65,12 +65,14 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    
     //numberOfRowsInSection: lists the number of cells
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         //the number of tweets
         return self.tweets?.count ?? 0
     }
+    
     
     //cellForRowAt: the data to be stored within the cell
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,45 +95,53 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
+    //A lot of segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-        
-        
-        
-        if let cell = sender as? UITableViewCell {
+
+        //cell to detailView segue
+        if segue.identifier == "cellToDetailView" {
             
-            let indexPath = tableView.indexPath(for: cell)
+            //retrieving cell
+            let cell = sender as? UITableViewCell
             
+            //getting indexPath of the cell
+            let indexPath = tableView.indexPath(for: cell!)
+            
+            //getting a reference to the tweetDetailViewController
             let tweetDetailViewController = segue.destination as! TweetDetailViewController
             
+            //Setting the tweet from in the tweetDetailViewController to the proper tweet
             tweetDetailViewController.tweet = tweets[(indexPath?.row)!] as Tweet
             
         }
         
+        //going to currentUserProfile
         if segue.identifier == "currentUserProfile" {
             
+            //reference to profileViewController
             let profileViewController = segue.destination as! ProfileViewController
             
+            //setting the user in profileViewController to currentUser
             profileViewController.user = User._currentUser
             
         }
         
+        //otherUserProfile
         if segue.identifier == "otherUserProfile" {
             
+            //reference to button
             let button = sender as! UIButton
             
+            //retrieving the indexPath stored within the button.tag
             let indexPath = button.tag
             
-            print(indexPath)
-            
+            //refernce to the profileViewController
             let profileViewController = segue.destination as! ProfileViewController
             
+            //setting the user of the profileViewController
             profileViewController.user = tweets[indexPath].user
             
         }
-        
-        
         
     }
  

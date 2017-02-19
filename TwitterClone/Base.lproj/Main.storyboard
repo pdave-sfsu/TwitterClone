@@ -371,7 +371,7 @@
                                             <outlet property="timestampButton" destination="0yA-Bf-WSz" id="6ib-YQ-D50"/>
                                             <outlet property="tweetCell" destination="H7Z-6W-VWM" id="NdX-ee-rtA"/>
                                             <outlet property="tweetLabel" destination="Qnl-Ld-750" id="Ob7-HN-BD8"/>
-                                            <segue destination="gvN-7O-Rpn" kind="show" id="1Uy-2C-Nn0"/>
+                                            <segue destination="gvN-7O-Rpn" kind="show" identifier="cellToDetailView" id="1Uy-2C-Nn0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -577,7 +577,7 @@
         <image name="retweet-icon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Yql-px-MRM"/>
+        <segue reference="NZl-nP-ry7"/>
         <segue reference="Tgc-Jh-hBR"/>
         <segue reference="om3-Hq-quf"/>
     </inferredMetricsTieBreakers>
