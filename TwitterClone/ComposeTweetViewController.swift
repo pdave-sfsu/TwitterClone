@@ -17,6 +17,7 @@ class ComposeTweetViewController: UIViewController {
     
     var replyUser: User!
     var isReply: Bool = false
+    var tweet: Tweet!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,14 @@ class ComposeTweetViewController: UIViewController {
         
         if isReply {
             
+            var escapedTweetMessage = tweetTextView.text!
             
+            escapedTweetMessage = escapedTweetMessage.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            
+            TwitterClient.sharedInstance?.reply(escapedTweetMessage, statusID: Int(tweet.idStr)!, params: nil, completion: {
+                (error) -> () in
+                print("replying")
+            })
             
             print("reply")
             

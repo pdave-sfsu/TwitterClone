@@ -280,6 +280,7 @@ class TweetDetailViewController: UIViewController {
             
             composeTweetViewController.isReply = true
             
+            composeTweetViewController.tweet = tweet
         }
         
     }

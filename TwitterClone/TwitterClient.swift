@@ -217,4 +217,15 @@ class TwitterClient: BDBOAuth1SessionManager {
         )
     }
     
+    func reply(_ escapedTweet: String, statusID: Int, params: NSDictionary?, completion: @escaping (_ error: Error?) -> () ){
+        post("1.1/statuses/update.json?in_reply_to_status_id=\(statusID)&status=\(escapedTweet)", parameters: params, success: { (operation: URLSessionDataTask!, response: Any?) -> Void in
+            print("tweeted: \(escapedTweet)")
+            completion(nil)
+        }, failure: { (operation: URLSessionDataTask?, error: Error!) -> Void in
+            print ("could not reply")
+            completion(error)
+        }
+        )
+    }
+    
 }
