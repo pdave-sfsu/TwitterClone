@@ -8,10 +8,11 @@
 
 import UIKit
 
+//ProfileViewContoller is the profileView
 class ProfileViewController: UIViewController {
     
+    //Outlets
     @IBOutlet weak var profileBackgroundImageView: UIImageView!
-    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screennameLabel: UILabel!
@@ -19,53 +20,50 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var followingButton: UIButton!
     @IBOutlet weak var followersButton: UIButton!
     @IBOutlet weak var tweetCountButton: UIButton!
-    
     @IBOutlet weak var composeTweet: UIButton!
     
+    //Future use for profileImageButton
+    @IBOutlet weak var profileImageView: UIImageView!
+
+    //user property
     var user: User!
     
-    var tweet: Tweet!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Since screenname is unique identifier, it is used as a key
+        //If it is the current user, then show composeTweet button
+        //Useful if user clicks on their own profile picture in the hometimeline
         if user.screenname != User._currentUser?.screenname {
             composeTweet.isHidden = true
         } else {
             composeTweet.isHidden = false
         }
         
-        if (user != nil) {
-            setProfileByUser()
-        }
+        //sets the Profile
+        setProfile()
         
-        
-        
-        if (tweet != nil) {
-            setProfileByTweet()
-        }
-        
-
-        // Do any additional setup after loading the view.
     }
     
-    func setProfileByUser() {
-        print("Profile being set by user")
+    
+    //Sets the profile
+    func setProfile() {
         
         if let profileURL = user.profileUrl {
             profileImageView.setImageWith(profileURL as URL)
         }
         
-        nameLabel.text = user.name as String?
-        
-        screennameLabel.text = user.screenname as String?
-        
-        descriptionLabel.text = user.tagline as String?
-        
         if let profileBackgroundURL = user.profileBackgroundUrl {
             profileBackgroundImageView.setImageWith(profileBackgroundURL as URL)
         }
         
+        nameLabel.text = user.name as String?
+        screennameLabel.text = user.screenname as String?
+        descriptionLabel.text = user.tagline as String?
+        
+        //sets the counts
+        //Future: Set the plurality of tweets and followers
         let followingCount = ("\(user.following_count) FOLLOWING")
         followingButton.setTitle(followingCount, for: .normal)
         
@@ -76,9 +74,6 @@ class ProfileViewController: UIViewController {
         tweetCountButton.setTitle(tweetCount, for: .normal)
     }
     
-    func setProfileByTweet() {
-        print("Profile being set by tweet")
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -86,14 +81,9 @@ class ProfileViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
-
+    
 }

@@ -8,6 +8,8 @@
 
 import UIKit
 
+//Shows the tweets in more detail.
+//Future: Also show replies
 class TweetDetailViewController: UIViewController {
     
     //Outlets
