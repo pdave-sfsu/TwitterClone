@@ -112,6 +112,8 @@ Please list two areas of the assignment you'd like to **discuss further with you
 1. API needs to be more clear. 
 2. Go into more detail on closures and optionals
 
+# Final Walkthrough
+
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories (2/18):
